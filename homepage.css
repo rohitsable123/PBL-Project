@@ -1,0 +1,167 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation Bar */
+header {
+    background: linear-gradient(to right, #3e3d65, #6b67a3);
+    padding: 10px 0;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.login-btn {
+    background-color: gold;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: url('gettyimages-1460007178-612x612.jpg') no-repeat center center/cover;
+    height: 80vh;
+    color: white;
+    padding: 100px 10%;
+    text-align: left;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #3c3c7b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.hero-image img {
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Section */
+.search {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.search input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-btn {
+    background: gold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Benefits Section */
+.benefits {
+    text-align: center;
+    padding: 40px 10%;
+    background: #fff;
+}
+
+.benefits h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.benefits p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background: #3c3c7b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
