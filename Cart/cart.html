@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - ReRead</title>
+    <link rel="stylesheet" href="cart.css">
+    <script defer src="cart.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <li>
+                <a href="../Profile/profile.html">
+                    <img src="profile-icon.png" alt="Profile" class="profile-icon">
+                </a>
+            </li>
+            <div class="logo">ReRead</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            </ul>
+            <a href="#">
+                <button type="button" class="logout-btn">Logout</button>
+            </a>    
+        </nav>
+    </header>
+
+    <section class="cart">
+        <h1>Your Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Items will be added dynamically using JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <p>Total: ₹<span id="cart-total">0.00</span></p>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+        </div>
+        <p>© 2025 ReRead. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReRead Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <script defer src="dashboard.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <li>
+                <a href="../Profile/profile.html">
+                    <img src="profile-icon.png" alt="Profile" class="profile-icon">
+                </a>
+            </li>
+            <div class="logo">ReRead</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="../Cart/cart.html">Cart</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+            <a href="#">
+                <button type="button" class="logout-btn">Logout</button>
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>User Panel</h2>
+            <a href="#">Profile</a>
+            <a href="#">Purchased Books</a>
+            <a href="#">Contacted Sellers</a>
+            <a href="#">Uploaded Books</a>
+            <a href="#">Sold Books</a>
+            <a href="#">Contacted Buyers</a>
+        </div>
+        <div class="main-content">
+            <div class="profile-box">
+                <div class="profile-header">
+                    <div class="profile-pic"><img src="profile-icon.png"></div>
+                    <div class="profile-info">
+                        <h3>Welcome, Rohit Sable!</h3>
+                        <p>Email: rohitsable@gmail.com</p>
+                        <p>Mobile No.: 7844652221</p>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <div class="btn-group">
+                        <button class="btn">Start Selling</button>
+                        <button class="btn">Browse Books</button>
+                    </div>
+                    <a  href="../Profile/profile.html" class="complete-profile">Complete your profile</a>
+                </div>
+            </div>
+            <div class="accordion">
+                <button class="accordion-btn">Purchased Books</button>
+                <div class="accordion-content">
+                    <p>You haven't purchased any books yet.</p>
+                </div>
+            
+                <button class="accordion-btn">Contacted Sellers</button>
+                <div class="accordion-content">
+                    <p>No sellers have been contacted yet.</p>
+                </div>
+            
+                <button class="accordion-btn">Uploaded Books</button>
+                <div class="accordion-content">
+                    <p>You haven't uploaded any books yet.</p>
+                </div>
+            
+                <button class="accordion-btn">Sold Books</button>
+                <div class="accordion-content">
+                    <p>No books have been sold yet.</p>
+                </div>
+            
+                <button class="accordion-btn">Contacted Buyers</button>
+                <div class="accordion-content">
+                    <p>No buyers have been contacted yet.</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <footer>
+        <div class="footer-links">
+            <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+        </div>
+        <p>© 2025 ReRead. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

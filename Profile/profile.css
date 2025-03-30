@@ -1,0 +1,185 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    margin-bottom:unset;
+}
+
+/* Navigation Bar */
+header {
+    background: linear-gradient(to right, #3e3d65, #6b67a3);
+    padding: 8px 0;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.back-btn, .notif-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Profile Section */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Prevents moving under header */
+    min-height: 100vh; /* Ensures enough space */
+    overflow: auto; /* Allows scrolling instead of shifting */
+    padding-top: 20px; /* Extra space from the header */
+    padding-bottom: 50px; /* Prevents overlap with footer */
+}
+
+
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Profile Picture */
+.profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-buttons button {
+    margin: 5px;
+    padding: 8px 12px;
+    background: gold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: black;
+}
+
+/* Dropdown */
+.dropdown {
+    background: lightgray;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Hidden Section */
+.hidden {
+    display: none;
+}
+
+#additionalFields {
+    margin-top: 15px;
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+label {
+    text-align: left;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+input, select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    background-color: #3c3c7b;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #f1ed82;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-buttons button {
+    width: 48%;
+    background-color: #007bff;
+}
+
+.action-buttons button:hover {
+  background-color: #0056;
+}
+
+
+/* Save Changes Button */
+#saveChangesBtn {
+    background-color: green;
+    display: block;
+    margin: 15px auto;
+    width: 100%;
+}
+
+#saveChangesBtn:hover {
+    background-color: darkgreen;
+}
+
+
+/* Footer */
+footer {
+    background: #3c3c7b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
