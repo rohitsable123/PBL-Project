@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 app.use(session({
   secret: 'your_secret_key',
