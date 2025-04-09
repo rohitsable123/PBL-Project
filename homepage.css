@@ -79,6 +79,7 @@ nav ul li a {
     color: white;
     padding: 100px 10%;
     text-align: left;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content {
