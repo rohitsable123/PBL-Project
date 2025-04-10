@@ -1,3 +1,4 @@
+/* General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +14,6 @@ body {
 header {
   background: linear-gradient(to right, #3e3d65, #6b67a3);
   padding: 10px 0;
-  position: relative;
 }
 
 .profile-icon {
@@ -54,8 +54,8 @@ nav ul li a {
   font-size: 18px;
 }
 
-.logout-btn {
-  background-color: rgb(243, 81, 81);
+.login-btn {
+  background-color: gold;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -77,13 +77,6 @@ nav ul li a {
   text-align: center;
   margin-bottom: 20px;
   color: #3e3d65;
-}
-
-.empty-message {
-  text-align: center;
-  padding: 40px 0;
-  font-size: 18px;
-  color: #888;
 }
 
 table {
@@ -141,15 +134,20 @@ td img {
   margin-top: 10px;
 }
 
+/* Empty cart message */
+.empty-cart {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
 /* Footer */
 footer {
   background: #3c3c7b;
   color: white;
   text-align: center;
   padding: 20px;
-  margin-top: 50px;
-  position: relative;
-  width: 100%;
+  margin-top: 60px;
 }
 
 .footer-links a {
