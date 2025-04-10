@@ -7,7 +7,11 @@
 }
 
 body {
-  background-color: #f4f4f4;
+  background: url('cart.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Navigation Bar */
@@ -30,6 +34,7 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -42,6 +47,7 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 
 nav ul li {
@@ -67,10 +73,11 @@ nav ul li a {
 .cart {
   width: 80%;
   margin: 40px auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex-grow: 1;
 }
 
 .cart h1 {
@@ -107,6 +114,16 @@ td img {
   font-size: 16px;
 }
 
+.qty-btn {
+  padding: 2px 8px;
+  font-size: 16px;
+  margin: 0 4px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 .remove-btn {
   background: red;
   color: white;
@@ -135,10 +152,22 @@ td img {
 }
 
 /* Empty cart message */
-.empty-cart {
+.empty-message {
   text-align: center;
-  font-size: 18px;
-  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3e3d65;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.8);
+  width: 80%;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.empty-message a {
+  color: #6b67a3;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 /* Footer */
@@ -147,7 +176,11 @@ footer {
   color: white;
   text-align: center;
   padding: 20px;
-  margin-top: 60px;
+  margin-top: auto;
+}
+
+.footer-links {
+  margin-bottom: 10px;
 }
 
 .footer-links a {
@@ -155,4 +188,40 @@ footer {
   text-decoration: none;
   margin: 0 10px;
   font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .logo {
+    margin-right: 0;
+    font-size: 20px;
+  }
+
+  .cart {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  .empty-message {
+    font-size: 20px;
+    width: 90%;
+  }
+
+  .checkout-btn {
+    width: 100%;
+  }
 }
