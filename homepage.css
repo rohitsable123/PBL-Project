@@ -1,210 +1,226 @@
 /* General Styling */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-  background-color: #f4f4f4;
+    background-color: #f4f4f4;
 }
 
 /* Navigation Bar */
 header {
-  background: linear-gradient(to right, #3e3d65, #6b67a3);
-  padding: 10px 0;
+    background: linear-gradient(to right, #3e3d65, #6b67a3);
+    padding: 10px 0;
+    position: relative;
 }
 
 .profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
 }
 
 nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }
 
 .login-btn {
-  background-color: gold;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+    background-color: gold;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* Hero Section */
 .hero {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  background: url('homepg.jpg') no-repeat center center/cover;
-  color: white;
-  padding: 60px 10%;
-  text-align: left;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    background: url('homepg.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 10%;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content {
-  flex: 1 1 400px;
-  max-width: 600px;
-  margin-bottom: 20px;
+    max-width: 600px;
 }
 
 .hero h1 {
-  font-size: 32px;
-  font-weight: bold;
+    font-size: 36px;
+    font-weight: bold;
 }
 
 .hero p {
-  font-size: 16px;
-  margin: 10px 0;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .hero-buttons {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .btn {
-  background-color: #3c3c7b;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
-  text-decoration: none;
-  display: inline-block;
+    background-color: #3c3c7b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  flex: 1 1 250px;
+a.btn {
+    text-decoration: none;
 }
 
 /* Search Section */
 .search {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 30px 10px;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    padding: 0 20px;
 }
 
 .search input {
-  flex: 1 1 300px;
-  max-width: 500px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .search-btn {
-  background: gold;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+    background: gold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
 /* Benefits Section */
 .benefits {
-  text-align: center;
-  padding: 40px 10%;
-  background: #fff;
+    text-align: center;
+    padding: 40px 10%;
+    background: #fff;
 }
 
 .benefits h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .benefits p {
-  font-size: 16px;
-  line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 /* Footer */
 footer {
-  background: #3c3c7b;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+    background: #3c3c7b;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
 
 .footer-links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* Responsive Design */
+@media (max-width: 992px) {
+    nav ul {
+        gap: 15px;
+    }
 
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 5%;
-  }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 60px 5%;
+    }
 
-  .hero-content,
-  .hero-image {
-    max-width: 100%;
-  }
+    .hero-content {
+        max-width: 100%;
+    }
 
-  .hero h1 {
-    font-size: 26px;
-  }
+    .search input {
+        width: 70%;
+    }
+}
 
-  .hero p {
-    font-size: 15px;
-  }
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .btn {
-    margin: 10px 5px;
-  }
+    .logo {
+        margin: 10px 0;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .search input {
+        width: 90%;
+    }
+
+    .btn {
+        margin-bottom: 10px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
