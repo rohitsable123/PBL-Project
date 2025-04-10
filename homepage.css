@@ -37,7 +37,6 @@ nav {
     position: relative;
 }
 
-
 .logo {
     color: white;
     font-size: 24px;
@@ -51,7 +50,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-right:110px;
+    margin-right: 110px;
 }
 
 nav ul li a {
@@ -109,6 +108,12 @@ nav ul li a {
     font-size: 16px;
     cursor: pointer;
     margin-right: 10px;
+}
+
+/* 🔥 FIX: Remove underline for "Browse Books" */
+a.btn {
+    text-decoration: none;
+    display: inline-block;
 }
 
 .hero-image img {
