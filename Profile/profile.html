@@ -1,78 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReRead - Profile</title>
-    <link rel="stylesheet" href="profile.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReRead - Profile</title>
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <button class="back-btn" onclick="goBack()">&#8592;</button>
-            <div class="logo">ReRead</div>
-            <button class="notif-btn" onclick="showNotifications()">🔔</button>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <button class="back-btn" onclick="goBack()">&#8592;</button>
+      <div class="logo">ReRead</div>
+      <button class="notif-btn" onclick="showNotifications()">🔔</button>
+    </nav>
+  </header>
 
-    <section class="profile-container">
-        <div class="profile-card">
-            <div class="profile-pic">
-                <img src="profile-icon.png" alt="Profile" id="profileImage">
-                <div class="profile-buttons">
-                    <button onclick="addProfile()">Add</button>
-                    <button onclick="removeProfile()">Remove</button>
-                </div>
-            </div>
-
-            <form id="profileForm">
-                <label>Name:</label>
-                <input type="text" value="John Doe" disabled>
-
-                <label>Email:</label>
-                <input type="email" value="johndoe@example.com" disabled>
-
-                <label>Number:</label>
-                <input type="tel" value="+1234567890" disabled>
-
-                <div class="dropdown" onclick="toggleDropdown()">
-                    Complete your Profile ⮟
-                </div>
-
-                <div id="additionalFields" class="hidden">
-                    <label>Age:</label>
-                    <input type="number" id="age" placeholder="Enter Age" oninput="checkProfileCompletion()">
-
-                    <label>Region:</label>
-                    <input type="text" id="region" placeholder="Enter Region" oninput="checkProfileCompletion()">
-
-                    <label>Gender:</label>
-                    <select id="gender" onchange="checkProfileCompletion()">
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-
-                    <button type="button" id="saveChangesBtn" onclick="saveProfile()" class="hidden">Save Changes</button>
-                </div>
-
-                <div class="action-buttons">
-                    <button type="button">Start Browsing</button>
-                    <button type="button">Start Selling</button>
-                </div>
-            </form>
+  <section class="profile-container">
+    <div class="profile-card">
+      <div class="profile-pic">
+        <img src="profile-icon.png" alt="Profile" id="profileImage">
+        <div class="profile-buttons">
+          <button onclick="addProfile()">Add</button>
+          <button onclick="removeProfile()">Remove</button>
         </div>
-    </section>
+      </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+      <form id="profileForm">
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label>Number:</label>
+        <input type="tel" id="number" placeholder="Enter your contact number">
+
+        <div class="dropdown" onclick="toggleDropdown()">
+          Complete your Profile ⮟
         </div>
-        <p>© 2025 ReRead. All Rights Reserved.</p>
-    </footer>
 
-    <script src="profile.js"></script>
+        <div id="additionalFields" class="hidden">
+          <label>Age:</label>
+          <input type="number" id="age" placeholder="Enter Age" oninput="checkProfileCompletion()">
+
+          <label>Region:</label>
+          <input type="text" id="region" placeholder="Enter Region" oninput="checkProfileCompletion()">
+
+          <label>Gender:</label>
+          <select id="gender" onchange="checkProfileCompletion()">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+
+          <button type="button" id="saveChangesBtn" onclick="saveProfile()" class="hidden">Save Changes</button>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button">Start Browsing</button>
+          <button type="button">Start Selling</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+    </div>
+    <p>© 2025 ReRead. All Rights Reserved.</p>
+  </footer>
+
+  <script src="profile.js"></script>
 
 </body>
 </html>
