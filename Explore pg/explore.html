@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explore - ReRead</title>
-  <!-- Link to explore.css -->
-  <link rel="stylesheet" href="explore.css">
+  <link rel="stylesheet" href="explore.css" />
 </head>
 <body>
-<header>
-  <nav>
-    <ul class="nav-left">
-      <li>
-        <a href="Profile/profile.html">
-          <img src="profile-icon.png" alt="Profile" class="profile-icon">
-        </a>
-      </li>
-    </ul>
-    <div class="logo">ReRead</div>
-    <ul class="nav-center">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../contact/contact.html">Contact</a></li>
-      <li><a href="../Cart/cart.html">Cart</a></li>
-      <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="../login/login.html">
-        <button type="button" class="login-btn">Login</button>
+  <header>
+    <nav>
+      <ul class="nav-left">
+        <li>
+          <a href="Profile/profile.html">
+            <img src="profile-icon.png" alt="Profile" class="profile-icon" />
+          </a>
+        </li>
+      </ul>
+      <div class="logo">ReRead</div>
+      <ul class="nav-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contact/contact.html">Contact</a></li>
+        <li><a href="Cart/cart.html">Cart</a></li>
+        <li><a href="Dashboard/dashboard.html">Dashboard</a></li>
+      </ul>
+      <a href="login/login.html">
+        <button class="login-btn">Login</button>
       </a>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
   <section class="explore-container">
     <h1>Explore Books</h1>
@@ -49,7 +46,7 @@
 
       <div>
         <label>Region:</label>
-        <input type="text" placeholder="Enter your region">
+        <input type="text" placeholder="Enter your region" />
       </div>
 
       <div>
@@ -64,9 +61,8 @@
     </div>
 
     <div class="book-grid">
-      <!-- Repeat book card -->
       <div class="book-card" onclick="location.href='book-details.html'">
-        <img src="book1.jpg" alt="Book">
+        <img src="book1.jpg" alt="Atomic Habits" />
         <h3>Atomic Habits</h3>
         <p>By James Clear</p>
         <p>₹250</p>
@@ -74,14 +70,12 @@
       </div>
 
       <div class="book-card" onclick="location.href='book-details.html'">
-        <img src="book2.jpg" alt="Book">
+        <img src="book2.jpg" alt="The Alchemist" />
         <h3>The Alchemist</h3>
         <p>By Paulo Coelho</p>
         <p>₹180</p>
         <button>Add to Cart</button>
       </div>
-
-      <!-- Add more cards similarly -->
     </div>
   </section>
 
