@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore - ReRead</title>
+  <link rel="stylesheet" href="explore.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <li>
+        <a href="Profile/profile.html">
+          <img src="profile-icon.png" alt="Profile" class="profile-icon">
+        </a>
+      </li>
+      <div class="logo">ReRead</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./contact/contact.html">Contact</a></li>
+        <li><a href="Cart/cart.html">Cart</a></li>
+        <li><a href="Dashboard/dashboard.html">Dashboard</a></li>
+      </ul>
+      <a href="login/login.html">
+        <button type="button" class="login-btn">Login</button>
+      </a>
+    </nav>
+  </header>
+
+  <section class="explore-container">
+    <h1>Explore Books</h1>
+
+    <div class="filters">
+      <div>
+        <label>Price Range:</label>
+        <select>
+          <option value="">Select</option>
+          <option value="0-100">₹0 - ₹100</option>
+          <option value="100-300">₹100 - ₹300</option>
+          <option value="300-500">₹300 - ₹500</option>
+          <option value="500+">₹500+</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Region:</label>
+        <input type="text" placeholder="Enter your region">
+      </div>
+
+      <div>
+        <label>Condition:</label>
+        <select>
+          <option value="">Select</option>
+          <option value="new">Like New</option>
+          <option value="good">Good</option>
+          <option value="used">Used</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="book-grid">
+      <!-- Repeat book card -->
+      <div class="book-card" onclick="location.href='book-details.html'">
+        <img src="book1.jpg" alt="Book">
+        <h3>Atomic Habits</h3>
+        <p>By James Clear</p>
+        <p>₹250</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <div class="book-card" onclick="location.href='book-details.html'">
+        <img src="book2.jpg" alt="Book">
+        <h3>The Alchemist</h3>
+        <p>By Paulo Coelho</p>
+        <p>₹180</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Add more cards similarly -->
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+    </div>
+    <p>© 2025 ReRead. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

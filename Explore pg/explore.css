@@ -1,0 +1,157 @@
+/* Use your homepage style as a base */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+/* Reuse nav and header styles */
+header {
+  background: linear-gradient(to right, #3e3d65, #6b67a3);
+  padding: 10px 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 150px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 110px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.login-btn {
+  background-color: gold;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Explore Section */
+.explore-container {
+  padding: 40px 10%;
+  background-color: #fff;
+}
+
+.explore-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #3e3d65;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filters div {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.filters select, .filters input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Book Grid */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+}
+
+.book-card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.book-card h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+  color: #3e3d65;
+}
+
+.book-card p {
+  margin: 2px 0;
+}
+
+.book-card button {
+  margin-top: 10px;
+  background-color: gold;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: #3c3c7b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
