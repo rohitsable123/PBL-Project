@@ -1,4 +1,4 @@
-/* General Reset */
+/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,11 +11,10 @@ body {
   color: #333;
 }
 
-/* Header/Nav Styling */
+/* Header */
 header {
   background: linear-gradient(to right, #3e3d65, #6b67a3);
   padding: 10px 0;
-  position: relative;
 }
 
 nav {
@@ -23,18 +22,15 @@ nav {
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 20px;
-  position: relative;
+  flex-wrap: wrap;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-}
-
-nav ul li {
-  margin-right: 110px;
+  gap: 30px;
 }
 
 nav ul li a {
@@ -43,11 +39,19 @@ nav ul li a {
   font-size: 18px;
 }
 
+.nav-left {
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  gap: 40px;
+}
+
 .logo {
-  color: white;
   font-size: 24px;
+  color: white;
   font-weight: bold;
-  margin-right: 150px;
 }
 
 .profile-icon {
@@ -70,12 +74,12 @@ nav ul li a {
 .explore-container {
   padding: 40px 60px;
   text-align: center;
+  background-color: #fff;
 }
 
 .explore-container h1 {
-  font-size: 32px;
+  font-size: 2rem;
   margin-bottom: 30px;
-  color: #333;
 }
 
 /* Filters */
@@ -100,20 +104,18 @@ nav ul li a {
 
 .filters input,
 .filters select {
-  padding: 10px;
-  border-radius: 5px;
+  padding: 8px;
+  border-radius: 4px;
   border: 1px solid #ccc;
   min-width: 200px;
-  font-size: 16px;
 }
 
-/* Book Cards Grid */
+/* Book Cards */
 .book-grid {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  padding: 0 10%;
 }
 
 .book-card {
@@ -133,18 +135,16 @@ nav ul li a {
 
 .book-card img {
   width: 100%;
-  height: auto;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .book-card h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 10px 0 5px;
 }
 
 .book-card p {
-  font-size: 15px;
   margin: 3px 0;
 }
 
@@ -154,18 +154,17 @@ nav ul li a {
   border: none;
   background-color: #3e3d65;
   color: white;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 15px;
 }
 
 .book-card button:hover {
-  background-color: #2f2c57;
+  background-color: #2b2a4f;
 }
 
 /* Footer */
 footer {
-  background-color: #3c3c7b;
+  background: #3e3d65;
   color: white;
   text-align: center;
   padding: 20px;
@@ -181,10 +180,4 @@ footer {
 
 .footer-links a:hover {
   text-decoration: underline;
-}
-
-/* Utility */
-a.btn {
-  text-decoration: none;
-  display: inline-block;
 }
