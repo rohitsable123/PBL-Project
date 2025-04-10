@@ -1,64 +1,68 @@
-/* Reset some default styles */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f3f3f3;
+  background-color: #f4f4f4;
   color: #333;
 }
 
 /* Header/Nav Styling */
 header {
-  background: linear-gradient(to right, #3f3d9e, #7e79d1);
-  padding: 10px 40px;
-  color: white;
+  background: linear-gradient(to right, #3e3d65, #6b67a3);
+  padding: 10px 0;
+  position: relative;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
+}
+
+nav ul li {
+  margin-right: 110px;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-weight: 500;
+  font-size: 18px;
 }
 
-nav .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.logo {
   color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 150px;
 }
 
 .profile-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-/* Login Button */
 .login-btn {
   background-color: gold;
-  color: #333;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -69,7 +73,7 @@ nav .logo {
 }
 
 .explore-container h1 {
-  font-size: 2rem;
+  font-size: 32px;
   margin-bottom: 30px;
   color: #333;
 }
@@ -96,10 +100,11 @@ nav .logo {
 
 .filters input,
 .filters select {
-  padding: 8px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   min-width: 200px;
+  font-size: 16px;
 }
 
 /* Book Cards Grid */
@@ -108,6 +113,7 @@ nav .logo {
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
+  padding: 0 10%;
 }
 
 .book-card {
@@ -133,11 +139,12 @@ nav .logo {
 }
 
 .book-card h3 {
-  font-size: 1.1rem;
+  font-size: 18px;
   margin: 10px 0 5px;
 }
 
 .book-card p {
+  font-size: 15px;
   margin: 3px 0;
 }
 
@@ -145,22 +152,23 @@ nav .logo {
   margin-top: 10px;
   padding: 8px 12px;
   border: none;
-  background-color: #3f3d9e;
+  background-color: #3e3d65;
   color: white;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .book-card button:hover {
-  background-color: #2c2b75;
+  background-color: #2f2c57;
 }
 
 /* Footer */
 footer {
-  background-color: #3f3d9e;
+  background-color: #3c3c7b;
   color: white;
   text-align: center;
-  padding: 15px 0;
+  padding: 20px;
   margin-top: 40px;
 }
 
@@ -168,14 +176,14 @@ footer {
   color: white;
   text-decoration: none;
   margin: 0 10px;
-  font-weight: 500;
+  font-size: 16px;
 }
 
 .footer-links a:hover {
   text-decoration: underline;
 }
 
-/* Prevent underline on Browse Books button */
+/* Utility */
 a.btn {
   text-decoration: none;
   display: inline-block;
