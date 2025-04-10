@@ -8,13 +8,12 @@
   <script defer src="cart.js"></script>
 </head>
 <body>
+
   <header>
     <nav>
-      <li>
-        <a href="../Profile/profile.html">
-          <img src="profile-icon.png" alt="Profile" class="profile-icon" />
-        </a>
-      </li>
+      <a href="../Profile/profile.html">
+        <img src="profile-icon.png" alt="Profile" class="profile-icon" />
+      </a>
       <div class="logo">ReRead</div>
       <ul>
         <li><a href="../index.html">Home</a></li>
@@ -22,17 +21,13 @@
         <li><a href="cart.html">Cart</a></li>
         <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
       </ul>
-      <a href="#">
-        <button type="button" class="logout-btn">Logout</button>
-      </a>
+      <button type="button" class="login-btn" id="auth-btn">Login</button>
     </nav>
   </header>
 
   <section class="cart">
     <h1>Your Cart</h1>
-    <div id="empty-message" class="empty-message">Your cart is empty. Browse books to start shopping!</div>
-
-    <table id="cart-table" style="display: none;">
+    <table>
       <thead>
         <tr>
           <th>Book</th>
@@ -44,14 +39,18 @@
         </tr>
       </thead>
       <tbody id="cart-items">
-        <!-- Items added dynamically -->
+        <!-- Items will be injected here -->
       </tbody>
     </table>
 
-    <div class="cart-summary" id="summary" style="display: none;">
+    <div class="cart-summary" id="summary-container" style="display: none;">
       <h2>Order Summary</h2>
       <p>Total: ₹<span id="cart-total">0.00</span></p>
       <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <div class="empty-cart" id="empty-msg">
+      <p>Your cart is currently empty. <a href="../Explore pg/explore.html">Browse books</a> to start shopping!</p>
     </div>
   </section>
 
@@ -61,5 +60,6 @@
     </div>
     <p>© 2025 ReRead. All Rights Reserved.</p>
   </footer>
+
 </body>
 </html>
