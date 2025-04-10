@@ -1,3 +1,4 @@
+/* General Styling */
 * {
     margin: 0;
     padding: 0;
@@ -6,16 +7,24 @@
 }
 
 body {
-    background: url('https://iili.io/3ahMDHx.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-/* Header and Navigation */
+/* Navigation Bar */
 header {
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to right, #3e3d65, #6b67a3);
     padding: 10px 0;
+    position: relative;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 nav {
@@ -25,48 +34,35 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-}
-
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    position: relative;
 }
 
 .logo {
-    font-size: 26px;
-    font-weight: bold;
     color: white;
-    margin-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 150px;
 }
 
-.nav-right {
+nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
 }
 
-.nav-right li a {
+nav ul li {
+    margin-right: 110px;
+}
+
+nav ul li a {
+    color: white;
     text-decoration: none;
     font-size: 18px;
-    color: white;
-    transition: color 0.3s;
-}
-
-.nav-right li a:hover {
-    color: gold;
 }
 
 .login-btn {
     background-color: gold;
-    color: black;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 15px;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -74,89 +70,112 @@ nav {
 
 /* Hero Section */
 .hero {
-    padding: 100px 20px 50px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: url('gettyimages-1460007178-612x612.jpg') no-repeat center center/cover;
+    height: 80vh;
+    color: white;
+    padding: 100px 10%;
+    text-align: left;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    max-width: 50%;
 }
 
 .hero h1 {
     font-size: 36px;
-    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .hero p {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin: 10px 0;
 }
 
-.hero-buttons .btn {
-    background-color: #ffcc00;
-    color: black;
+.hero-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #3c3c7b;
+    color: white;
     padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
-    margin: 0 10px;
-    text-decoration: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-.hero-buttons .btn:hover {
-    background-color: #e6b800;
+/* 🔥 FIX: Remove underline for "Browse Books" */
+a.btn {
+    text-decoration: none;
+    display: inline-block;
 }
 
-/* Search */
+.hero-image img {
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Section */
 .search {
-    margin: 40px auto;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
 }
 
 .search input {
+    width: 50%;
     padding: 10px;
-    width: 300px;
+    font-size: 16px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #ccc;
 }
 
 .search-btn {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
     background: gold;
-    font-size: 16px;
+    border: none;
+    padding: 10px 15px;
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
-/* Benefits */
+/* Benefits Section */
 .benefits {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 40px 20px;
     text-align: center;
+    padding: 40px 10%;
+    background: #fff;
 }
 
 .benefits h2 {
     font-size: 28px;
-    margin-bottom: 20px;
-    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .benefits p {
     font-size: 18px;
-    color: #ddd;
+    line-height: 1.6;
 }
 
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    text-align: center;
+    background: #3c3c7b;
     color: white;
+    text-align: center;
+    padding: 20px;
 }
 
 .footer-links a {
     color: white;
-    margin: 0 10px;
     text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
 }
