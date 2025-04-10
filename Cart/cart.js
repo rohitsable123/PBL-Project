@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const summaryContainer = document.getElementById("summary-container");
   const authBtn = document.getElementById("auth-btn");
 
-  let cart = []; // Start with an empty cart
+  let cart = []; // Start with empty cart
 
   function renderCart() {
     cartItemsContainer.innerHTML = "";
@@ -55,15 +55,24 @@ document.addEventListener("DOMContentLoaded", function () {
     renderCart();
   };
 
-  // Toggle login/logout button
-  let isLoggedIn = false;
-  authBtn.textContent = "Login";
+  // 🔐 Handle login/logout behavior using localStorage
+  function updateAuthButton() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  authBtn.addEventListener("click", () => {
-    isLoggedIn = !isLoggedIn;
-    authBtn.textContent = isLoggedIn ? "Logout" : "Login";
-    authBtn.style.backgroundColor = "gold";
-  });
+    if (isLoggedIn) {
+      authBtn.textContent = "Logout";
+      authBtn.onclick = () => {
+        localStorage.setItem("isLoggedIn", "false");
+        location.reload();
+      };
+    } else {
+      authBtn.textContent = "Login";
+      authBtn.onclick = () => {
+        window.location.href = "../login/login.html";
+      };
+    }
+  }
 
+  updateAuthButton();
   renderCart();
 });
