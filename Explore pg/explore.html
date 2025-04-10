@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explore Books - ReRead</title>
-  <link rel="stylesheet" href="explore.css">
+  <link rel="stylesheet" href="explore.css" />
 </head>
 <body>
   <header>
@@ -29,27 +29,31 @@
 
   <main class="explore-container">
     <h1>Explore Books</h1>
-    <div class="filters">
-      <label>Price Range:</label>
-      <select>
-        <option>Select</option>
-        <option value="low">Below ₹200</option>
-        <option value="mid">₹200 - ₹500</option>
-        <option value="high">Above ₹500</option>
-      </select>
 
-      <label>Region:</label>
-      <input type="text" placeholder="Enter your region">
+    <div class="filters-section">
+      <div class="filters">
+        <label>Price Range:</label>
+        <select>
+          <option>Select</option>
+          <option value="low">Below ₹200</option>
+          <option value="mid">₹200 - ₹500</option>
+          <option value="high">Above ₹500</option>
+        </select>
 
-      <label>Condition:</label>
-      <select>
-        <option>Select</option>
-        <option value="new">New</option>
-        <option value="used">Used</option>
-      </select>
+        <label>Region:</label>
+        <input type="text" placeholder="Enter your region">
+
+        <label>Condition:</label>
+        <select>
+          <option>Select</option>
+          <option value="new">New</option>
+          <option value="used">Used</option>
+        </select>
+      </div>
     </div>
 
     <div class="book-list">
+      <!-- Book Cards -->
       <div class="book-card">
         <img src="../book.png" alt="Book">
         <h3>Atomic Habits</h3>
@@ -76,6 +80,34 @@
         <h3>Ikigai</h3>
         <p>By Héctor García</p>
         <p>₹200</p>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="book-card">
+        <img src="../book.png" alt="Book">
+        <h3>Think Like a Monk</h3>
+        <p>By Jay Shetty</p>
+        <p>₹320</p>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="book-card">
+        <img src="../book.png" alt="Book">
+        <h3>Deep Work</h3>
+        <p>By Cal Newport</p>
+        <p>₹280</p>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="book-card">
+        <img src="../book.png" alt="Book">
+        <h3>Do It Today</h3>
+        <p>By Darius Foroux</p>
+        <p>₹150</p>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="book-card">
+        <img src="../book.png" alt="Book">
+        <h3>The Subtle Art of Not Giving a F*ck</h3>
+        <p>By Mark Manson</p>
+        <p>₹350</p>
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
