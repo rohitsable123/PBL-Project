@@ -1,30 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalElement = document.getElementById("cart-total");
-  const emptyMessage = document.getElementById("empty-message");
-  const summary = document.getElementById("summary");
-  const cartTable = document.getElementById("cart-table");
+  const emptyMsg = document.getElementById("empty-msg");
+  const summaryContainer = document.getElementById("summary-container");
+  const authBtn = document.getElementById("auth-btn");
 
-  // Load cart from localStorage or start empty
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = []; // Start with an empty cart
 
   function renderCart() {
     cartItemsContainer.innerHTML = "";
     let total = 0;
 
     if (cart.length === 0) {
-      emptyMessage.style.display = "block";
-      summary.style.display = "none";
-      cartTable.style.display = "none";
+      summaryContainer.style.display = "none";
+      emptyMsg.style.display = "block";
       return;
-    } else {
-      emptyMessage.style.display = "none";
-      summary.style.display = "block";
-      cartTable.style.display = "table";
     }
 
+    summaryContainer.style.display = "block";
+    emptyMsg.style.display = "none";
+
     cart.forEach((item, index) => {
-      let itemTotal = item.price * item.quantity;
+      const itemTotal = item.price * item.quantity;
       total += itemTotal;
 
       cartItemsContainer.innerHTML += `
@@ -44,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     cartTotalElement.innerText = total.toFixed(2);
-    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   window.updateQuantity = function (index, change) {
@@ -58,6 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
     cart.splice(index, 1);
     renderCart();
   };
+
+  // Toggle login/logout button
+  let isLoggedIn = false;
+  authBtn.textContent = "Login";
+
+  authBtn.addEventListener("click", () => {
+    isLoggedIn = !isLoggedIn;
+    authBtn.textContent = isLoggedIn ? "Logout" : "Login";
+    authBtn.style.backgroundColor = "gold";
+  });
 
   renderCart();
 });
