@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - ReRead</title>
+  <link rel="stylesheet" href="contact.css" />
+  <script defer src="contact.js"></script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="../Profile/profile.html">
+        <img id="nav-profile-photo" src="profile-icon.png" alt="Profile" class="profile-icon" />
+      </a>
+
+      <div class="logo">ReRead</div>
+
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../Cart/cart.html">Cart</a></li>
+        <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <button type="button" class="login-btn" id="auth-btn">Login</button>
+    </nav>
+  </header>
+
+  <section class="contact-section">
+    <h1>Contact Us</h1>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="send-btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
+    </div>
+    <p>© 2025 ReRead. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
