@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 🔄 Set profile photo if available
   const storedPhoto = localStorage.getItem("profilePhoto");
-  if (storedPhoto) {
+  if (storedPhoto && profilePhoto) {
     profilePhoto.src = storedPhoto;
   }
 
@@ -26,18 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  updateAuthButton();
+  if (authBtn) {
+    updateAuthButton();
+  }
 
   // 📧 Handle Send Message click
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const name = encodeURIComponent(document.getElementById("name").value);
-    const email = encodeURIComponent(document.getElementById("email").value);
-    const message = encodeURIComponent(document.getElementById("message").value);
+      const name = encodeURIComponent(document.getElementById("name").value);
+      const email = encodeURIComponent(document.getElementById("email").value);
+      const message = encodeURIComponent(document.getElementById("message").value);
 
-    const mailtoLink = `mailto:rohitsable504@gmail.com?subject=Contact%20Query%20from%20${name}&body=Name:%20${name}%0AEmail:%20${email}%0AMessage:%0A${message}`;
+      const mailtoLink = `mailto:rohitsable504@gmail.com?subject=Contact%20Query%20from%20${name}&body=Name:%20${name}%0AEmail:%20${email}%0AMessage:%0A${message}`;
 
-    window.location.href = mailtoLink;
-  });
+      window.location.href = mailtoLink;
+    });
+  }
 });
