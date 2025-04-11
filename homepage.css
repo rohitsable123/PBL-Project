@@ -12,53 +12,54 @@ body {
 
 /* Navigation Bar */
 header {
-    background: linear-gradient(to right, #3e3d65, #6b67a3);
-    padding: 10px 0;
-    position: relative;
-}
-
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  background: linear-gradient(to right, #3e3d65, #6b67a3);
+  padding: 10px 0;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 150px;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 100px;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 .login-btn {
-    background-color: gold;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+  background-color: gold;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 /* Hero Section */
