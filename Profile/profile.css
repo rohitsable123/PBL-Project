@@ -6,52 +6,53 @@
 }
 
 body {
-  background-color: #f4f7fc;
+  background: #f4f7fc;
 }
 
-header nav {
+header {
+  background: linear-gradient(to right, #3e3d65, #6b67a3);
+  padding: 10px 20px;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, #3e3d65, #6b67a3);
-  color: white;
-  padding: 10px 20px;
 }
 
 .logo {
   font-size: 24px;
+  color: white;
   font-weight: bold;
 }
 
-.back-btn,
-.notif-btn {
+.back-btn, .notif-btn {
   background: gold;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 15px;
   border-radius: 5px;
-  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .profile-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 .profile-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 30px;
   max-width: 500px;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .profile-pic {
   text-align: center;
   margin-bottom: 20px;
-  position: relative;
 }
 
 .profile-pic img {
@@ -59,213 +60,42 @@ header nav {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #ccc;
 }
 
 .profile-buttons {
   margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
+.profile-buttons input,
 .profile-buttons button {
-  background: #ffd700;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.profile-buttons button:hover {
-  background: orange;
-}
-
-form label {
-  display: block;
-  margin-top: 12px;
-  font-weight: 500;
-}
-
-form input, form select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.dropdown {
-  margin-top: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  background: #e7f2f2;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.action-buttons button {
-  background: #ffd700;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-footer {
-  background: #3c3c7b;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  header nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .action-buttons button {
-    width: 100%;
-  }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  background-color: #f4f7fc;
-}
-
-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to right, #3e3d65, #6b67a3);
-  color: white;
-  padding: 10px 20px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.back-btn,
-.notif-btn {
-  background: gold;
-  border: none;
+  margin: 5px;
   padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
   cursor: pointer;
 }
 
-.profile-container {
+form {
   display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.profile-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile-pic {
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.profile-pic img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ccc;
-}
-
-.profile-buttons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   gap: 10px;
 }
 
-.profile-buttons button {
-  background: #ffd700;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.profile-buttons button:hover {
-  background: orange;
-}
-
-form label {
-  display: block;
-  margin-top: 12px;
-  font-weight: 500;
-}
-
 form input, form select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
   border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 .dropdown {
-  margin-top: 15px;
   cursor: pointer;
-  font-weight: bold;
-  background: #e7f2f2;
+  background: #e0f0ff;
   padding: 10px;
-  border-radius: 5px;
   text-align: center;
+  border-radius: 6px;
+  margin-top: 10px;
 }
 
 .hidden {
@@ -273,50 +103,43 @@ form input, form select {
 }
 
 .action-buttons {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .action-buttons button {
-  background: #ffd700;
+  background: yellow;
+  padding: 10px 15px;
+  font-weight: bold;
   border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 footer {
-  background: #3c3c7b;
+  background: #3e3d65;
   color: white;
-  text-align: center;
   padding: 20px;
-  margin-top: 40px;
+  text-align: center;
 }
 
 .footer-links a {
   color: white;
-  text-decoration: none;
   margin: 0 10px;
-  font-size: 16px;
+  text-decoration: none;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  header nav {
+  .profile-card {
+    padding: 20px;
+  }
+
+  nav {
     flex-direction: column;
     gap: 10px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .action-buttons button {
-    width: 100%;
   }
 }
