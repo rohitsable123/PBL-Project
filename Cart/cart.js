@@ -1,78 +1,88 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const cartItemsContainer = document.getElementById("cart-items");
-  const cartTotalElement = document.getElementById("cart-total");
-  const emptyMsg = document.getElementById("empty-msg");
-  const summaryContainer = document.getElementById("summary-container");
-  const authBtn = document.getElementById("auth-btn");
+document.addEventListener("DOMContentLoaded", () => {
+    const profileImage = document.getElementById("profileImage");
+    const loginBtn = document.getElementById("loginBtn");
+    const cartItemsContainer = document.getElementById("cart-items");
 
-  let cart = []; // Start with empty cart
-
-  function renderCart() {
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
-
-    if (cart.length === 0) {
-      summaryContainer.style.display = "none";
-      emptyMsg.style.display = "block";
-      return;
+    // Load profile image
+    const storedImage = localStorage.getItem("profileImage");
+    if (storedImage && profileImage) {
+        profileImage.src = storedImage;
     }
 
-    summaryContainer.style.display = "block";
-    emptyMsg.style.display = "none";
+    // Login button toggle
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    loginBtn.textContent = isLoggedIn ? "Logout" : "Login";
 
-    cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
-      total += itemTotal;
-
-      cartItemsContainer.innerHTML += `
-        <tr>
-          <td><img src="${item.image}" alt="${item.title}"></td>
-          <td>${item.title}</td>
-          <td>₹${item.price}</td>
-          <td>
-            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
-            <input type="text" class="quantity" value="${item.quantity}" readonly>
-            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
-          </td>
-          <td>₹${itemTotal}</td>
-          <td><button class="remove-btn" onclick="removeItem(${index})">X</button></td>
-        </tr>
-      `;
+    loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (isLoggedIn) {
+            localStorage.removeItem("isLoggedIn");
+            loginBtn.textContent = "Login";
+            window.location.href = "../index.html";
+        } else {
+            window.location.href = "../login/login.html";
+        }
     });
 
-    cartTotalElement.innerText = total.toFixed(2);
-  }
+    // Retrieve cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-  window.updateQuantity = function (index, change) {
-    if (cart[index].quantity + change > 0) {
-      cart[index].quantity += change;
+    // Render cart
+    function renderCart() {
+        cartItemsContainer.innerHTML = "";
+
+        if (cartItems.length === 0) {
+            return;
+        }
+
+        cartItems.forEach((item, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td><img src="${item.image}" alt="${item.title}" style="width: 50px;"></td>
+                <td>${item.title}</td>
+                <td>₹${item.price}</td>
+                <td>
+                    <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="qty-input" />
+                </td>
+                <td>₹${item.price * item.quantity}</td>
+                <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+            `;
+
+            cartItemsContainer.appendChild(row);
+        });
+
+        addEventListeners();
     }
-    renderCart();
-  };
 
-  window.removeItem = function (index) {
-    cart.splice(index, 1);
-    renderCart();
-  };
+    // Add event listeners to quantity inputs and remove buttons
+    function addEventListeners() {
+        document.querySelectorAll(".qty-input").forEach(input => {
+            input.addEventListener("change", (e) => {
+                const index = e.target.dataset.index;
+                const newQty = parseInt(e.target.value);
+                if (newQty > 0) {
+                    cartItems[index].quantity = newQty;
+                    saveCart();
+                    renderCart();
+                }
+            });
+        });
 
-  // 🔐 Handle login/logout behavior using localStorage
-  function updateAuthButton() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-    if (isLoggedIn) {
-      authBtn.textContent = "Logout";
-      authBtn.onclick = () => {
-        localStorage.setItem("isLoggedIn", "false");
-        location.reload();
-      };
-    } else {
-      authBtn.textContent = "Login";
-      authBtn.onclick = () => {
-        window.location.href = "../login/login.html";
-      };
+        document.querySelectorAll(".remove-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const index = e.target.dataset.index;
+                cartItems.splice(index, 1);
+                saveCart();
+                renderCart();
+            });
+        });
     }
-  }
 
-  updateAuthButton();
-  renderCart();
+    // Save to localStorage
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+    }
+
+    renderCart();
 });
