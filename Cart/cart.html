@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cart - ReRead</title>
-  <link rel="stylesheet" href="cart.css" />
-  <script defer src="cart.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReRead - Cart</title>
+    <link rel="stylesheet" href="cart.css" />
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../Profile/profile.html">
+                    <img src="../profile-icon.png" alt="Profile" class="profile-icon" id="profileImage" />
+                </a>
+            </div>
+            <div class="logo">ReRead</div>
+            <ul class="nav-right">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+            </ul>
+            <a href="../login/login.html">
+                <button type="button" class="login-btn" id="loginBtn">Login</button>
+            </a>
+        </nav>
+    </header>
 
-  <header>
-    <nav>
-      <a href="../Profile/profile.html">
-        <img src="../Profile/profile-icon.png" alt="Profile" class="profile-icon">
-      </a>
+    <main class="cart-container">
+        <div class="cart-box transparent-box">
+            <h2>Your Cart</h2>
+            <p>Your cart is empty. Start browsing books <a href="../Explore pg/explore.html">here</a>!</p>
+        </div>
 
-      <div class="logo">ReRead</div>
+        <div class="cart-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Dynamically added items will go here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
 
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../contact/contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart</a></li>
-        <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
-      </ul>
-
-      <button type="button" class="login-btn" id="auth-btn">Login</button>
-    </nav>
-  </header>
-
-  <section class="cart">
-    <h1>Your Cart</h1>
-
-    <p id="empty-msg" class="empty-message">Your cart is empty. Start browsing books <a href="../Explore pg/explore.html">here</a>!</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Book</th>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody id="cart-items">
-        <!-- JS will populate cart items -->
-      </tbody>
-    </table>
-
-    <div class="cart-summary" id="summary-container">
-      <h2>Order Summary</h2>
-      <p>Total: ₹<span id="cart-total">0.00</span></p>
-      <button class="checkout-btn">Proceed to Checkout</button>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">FAQ</a>
-    </div>
-    <p>© 2025 ReRead. All Rights Reserved.</p>
-  </footer>
-
+    <script src="cart.js"></script>
 </body>
 </html>
