@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReRead - Cart</title>
-    <link rel="stylesheet" href="cart.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - ReRead</title>
+  <link rel="stylesheet" href="cart.css" />
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-left">
-                <a href="../Profile/profile.html">
-                    <img src="../profile-icon.png" alt="Profile" class="profile-icon" id="profileImage" />
-                </a>
-            </div>
-            <div class="logo">ReRead</div>
-            <ul class="nav-right">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../contact/contact.html">Contact</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
-            </ul>
-            <a href="../login/login.html">
-                <button type="button" class="login-btn" id="loginBtn">Login</button>
-            </a>
-        </nav>
-    </header>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <img src="logo.png" alt="ReRead Logo" />
+      <span>ReRead</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+      <a href="dashboard.html">Dashboard</a>
+      <button id="loginBtn">Login</button>
+      <img id="profileImage" class="profile-img" src="default-profile.png" alt="Profile" />
+    </div>
+  </nav>
 
-    <main class="cart-container">
-        <div class="cart-box transparent-box">
-            <h2>Your Cart</h2>
-            <p>Your cart is empty. Start browsing books <a href="../Explore pg/explore.html">here</a>!</p>
-        </div>
+  <!-- Cart Container -->
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+    <p>Your cart is empty. Start browsing books <a href="explore.html">here</a>!</p>
 
-        <div class="cart-box">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Book</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <!-- Dynamically added items will go here -->
-                </tbody>
-            </table>
-        </div>
-    </main>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems">
+        <!-- Items will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
 
-    <script src="cart.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div>
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Contact</a> |
+      <a href="#">FAQ</a>
+    </div>
+    <p>&copy; 2025 ReRead. All Rights Reserved.</p>
+  </footer>
+
+  <script src="cart.js"></script>
 </body>
 </html>
