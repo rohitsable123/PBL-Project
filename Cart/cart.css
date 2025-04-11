@@ -1,227 +1,135 @@
-/* General Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-  background: url('cart.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    background: url('../homepg.jpg') no-repeat center center/cover;
+    min-height: 100vh;
 }
 
-/* Navigation Bar */
+/* Header */
 header {
-  background: linear-gradient(to right, #3e3d65, #6b67a3);
-  padding: 10px 0;
-}
-
-.profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+    background: linear-gradient(to right, #3e3d65, #6b67a3);
+    padding: 10px 0;
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
 }
 
 .logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 150px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+.nav-right {
+    display: flex;
+    list-style: none;
+    gap: 30px;
 }
 
-nav ul li {
-  margin-right: 110px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
+.nav-right li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }
 
 .login-btn {
-  background-color: gold;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+    background-color: gold;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-/* Cart Section */
-.cart {
-  width: 80%;
-  margin: 40px auto;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  flex-grow: 1;
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
-.cart h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #3e3d65;
+/* Cart Styling */
+.cart-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cart-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+.transparent-box {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.cart-box h2 {
+    text-align: center;
+    color: #3e3d65;
+    margin-bottom: 10px;
+}
+
+.cart-box p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cart-box a {
+    color: #3e3d65;
+    text-decoration: underline;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
 }
 
 th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+    padding: 12px;
+    border: 1px solid #ccc;
 }
 
 th {
-  background: #6b67a3;
-  color: white;
+    background-color: #6b67a3;
+    color: white;
 }
 
-td img {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-}
-
-.quantity {
-  width: 50px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.qty-btn {
-  padding: 2px 8px;
-  font-size: 16px;
-  margin: 0 4px;
-  background-color: #ddd;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.remove-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-/* Order Summary */
-.cart-summary {
-  text-align: right;
-  margin-top: 30px;
-  font-size: 18px;
-  padding: 5px;
-}
-
-.checkout-btn {
-  background: gold;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-/* Empty cart message */
-.empty-message {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #3e3d65;
-  margin: 30px auto;
-  background: rgba(255, 255, 255, 0.8);
-  width: 80%;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.empty-message a {
-  color: #6b67a3;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-/* Footer */
-footer {
-  background: #3c3c7b;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: auto;
-}
-
-.footer-links {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-}
-
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  nav ul li {
-    margin: 10px 0;
-  }
+    .nav-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        margin-top: 10px;
+    }
 
-  .logo {
-    margin-right: 0;
-    font-size: 20px;
-  }
+    .cart-box {
+        padding: 10px;
+    }
 
-  .cart {
-    width: 95%;
-    margin: 20px auto;
-  }
-
-  table {
-    font-size: 14px;
-  }
-
-  .empty-message {
-    font-size: 20px;
-    width: 90%;
-  }
-
-  .checkout-btn {
-    width: 100%;
-  }
+    table {
+        font-size: 14px;
+    }
 }
