@@ -5,6 +5,9 @@ const db = require('../db');
 
 router.post('/signup', async (req, res) => {
   const { fullname, email, phone, password } = req.body;
+  console.log('✅ Signup route hit');
+console.log('Request body:', req.body);
+
 
   if (!fullname || !email || !phone || !password) {
     return res.status(400).send('All fields are required');
@@ -31,6 +34,3 @@ router.post('/signup', async (req, res) => {
 });
 
 module.exports = router;
-
-console.log('✅ Signup route hit');
-console.log('Request body:', req.body);
