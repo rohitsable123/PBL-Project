@@ -3,7 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const authRoutes = require('./routes/auth');
-
+const path = require('path');
+app.use(express.static(path.join(__dirname)));
 const app = express();
 
 // Middleware
