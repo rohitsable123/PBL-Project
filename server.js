@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -21,6 +20,7 @@ app.use(session({
 }));
 
 // Routes
+const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
 // Root Route
