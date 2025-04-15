@@ -9,7 +9,10 @@ const path = require('path');
 app.use(express.static(path.join(__dirname)));
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST']
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
