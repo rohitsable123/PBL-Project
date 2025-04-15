@@ -31,3 +31,6 @@ router.post('/signup', async (req, res) => {
 });
 
 module.exports = router;
+
+console.log('✅ Signup route hit');
+console.log('Request body:', req.body);
