@@ -9,9 +9,11 @@ const path = require('path');
 app.use(express.static(path.join(__dirname)));
 
 // Middleware
+
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST']
+  origin: 'https://rohitsable123.github.io',
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
