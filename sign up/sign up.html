@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up - ReRead</title>
   <link rel="stylesheet" href="sign up.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <div class="signup-container">
@@ -74,8 +75,15 @@
 
       const msg = await res.text();
       if (res.ok) {
-        alert('✅ ' + msg);
-        window.location.href = '../Dashboard/dashboard.html';
+        Swal.fire({
+           icon: 'success',
+           title: 'Signup Successful',
+           text: 'Redirecting to dashboard...',
+           timer: 2000,
+           showConfirmButton: false
+         }).then(() => {
+         window.location.href = '../dashboard/dashboard.html';
+        });
       } else {
         alert('❌ ' + msg);
       }
