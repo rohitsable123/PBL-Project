@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 });
 
 // Start server (IMPORTANT: Railway needs process.env.PORT ONLY)
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
