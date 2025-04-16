@@ -35,3 +35,39 @@ router.post('/signup', async (req, res) => {
 });
 
 module.exports = router;
+
+/**********************************************/
+
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password required' });
+  }
+
+  db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const user = results[0];
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    req.session.user = {
+      id: user.id,
+      fullname: user.fullname,
+      email: user.email
+    };
+
+    res.json({ message: 'Login successful', user: req.session.user });
+  });
+});
