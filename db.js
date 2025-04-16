@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'maglev.proxy.rlwy.net',
-  user: 'root',
-  password: 'ruJhTEEOaAFozhxWSlBQFvDDnBsIIlSh',
-  database: 'railway',
-  port: 43046
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 connection.connect(err => {
@@ -17,4 +17,5 @@ connection.connect(err => {
 });
 
 module.exports = connection;
+
 
