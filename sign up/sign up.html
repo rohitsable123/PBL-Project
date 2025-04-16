@@ -47,6 +47,47 @@
       <div class="extra-links">
         <p>Already have an account? <a href="../login/login.html">Login here</a></p>
       </div>
+      <script>
+  const form = document.getElementById('signup-form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fullname = document.getElementById('fullname').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    try {
+      const res = await fetch('https://pbl-backend-cqot.onrender.com/auth/signup', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fullname, email, phone, password })
+      });
+
+      const msg = await res.text();
+      if (res.ok) {
+        alert('✅ ' + msg);
+        window.location.href = '../dashboard/dashboard.html';
+      } else {
+        alert('❌ ' + msg);
+      }
+    } catch (err) {
+      alert('Something went wrong');
+      console.error(err);
+    }
+  });
+</script>
+
     </form>
   </div>
   <script>
