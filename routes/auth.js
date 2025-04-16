@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 const db = require('../db');
 
 router.post('/signup', async (req, res) => {
-  const { fullname, email, phone, password } = req.body;
-  console.log('✅ Signup route hit');
-console.log('Request body:', req.body);
+  console.log('Signup route hit');
+  console.log('Request body:', req.body);
 
+  const { fullname, email, phone, password } = req.body;
 
   if (!fullname || !email || !phone || !password) {
     return res.status(400).send('All fields are required');
@@ -29,6 +29,7 @@ console.log('Request body:', req.body);
       }
     );
   } catch (err) {
+    console.error(err);
     res.status(500).send('Server error');
   }
 });
