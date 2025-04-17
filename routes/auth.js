@@ -71,3 +71,16 @@ router.post('/login', (req, res) => {
     res.json({ message: 'Login successful', user: req.session.user });
   });
 });
+
+
+/*****************************************************/
+
+
+router.get('/user', (req, res) => {
+  if (req.session.user) {
+    res.json({ user: req.session.user });
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
+});
+
