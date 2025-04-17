@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname)));
 
 // Enable CORS for GitHub Pages
 app.use(cors({
-  origin: 'https://rohitsable123.github.io',
+  origin:['https://rohitsable123.github.io', 'http://127.0.0.1:5500'],
   methods: ['GET', 'POST'],
   credentials: true
 }));
