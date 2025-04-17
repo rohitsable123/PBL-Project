@@ -67,14 +67,7 @@ router.post('/login', (req, res) => {
       fullname: user.fullname,
       email: user.email
     };
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None", 
-    });
-
-
+    
     res.json({ message: 'Login successful', user: req.session.user });
   });
 });
