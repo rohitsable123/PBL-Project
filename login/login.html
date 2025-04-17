@@ -1,33 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - ReRead</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - ReRead</title>
+  <link rel="stylesheet" href="login.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+  <div class="login-container">
+    <h2>Login to ReRead</h2>
+    <form id="login-form">
+      <div class="input-group">
+        <label for="username">Email</label>
+        <input type="email" id="username" name="username" placeholder="Enter your email" required />
+      </div>
 
-    <div class="login-container">
-        <h2>Login to ReRead</h2>
-        <form action="/auth/signup" method="POST">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+      </div>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
+      <button type="submit" class="login-btn">Login</button>
 
-            <button type="submit" class="login-btn">Login</button>
+      <div class="extra-links">
+        <a href="#">Forgot Password?</a> | <a href="../sign up/sign up.html">Sign Up</a>
+      </div>
+    </form>
+  </div>
 
-            <div class="extra-links">
-                <a href="#">Forgot Password?</a> | <a href="../sign up/sign up.html">Sign Up</a>
-            </div>
-        </form>
-    </div>
+  <script>
+    const form = document.getElementById("login-form");
 
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("https://pbl-backend-cqot.onrender.com/auth/login", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          Swal.fire({
+            icon: "success",
+            title: "Login Successful",
+            text: "Redirecting to dashboard...",
+            timer: 2000,
+            showConfirmButton: false
+          }).then(() => {
+            window.location.href = "../Dashboard/dashboard.html";
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: data.message || "Invalid credentials"
+          });
+        }
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Something went wrong!"
+        });
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
