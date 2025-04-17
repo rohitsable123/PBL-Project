@@ -1,93 +1,92 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const accordionButtons = document.querySelectorAll(".accordion-btn");
   const accordionContents = document.querySelectorAll(".accordion-content");
   const sidebarLinks = document.querySelectorAll(".sidebar a");
   const profileSection = document.querySelector(".profile-box");
+  const navIcon = document.getElementById("navProfileIcon");
+  const dashboardIcon = document.getElementById("dashboardProfile");
+  const loginBtn = document.getElementById("loginToggle");
 
-  // Sidebar Navigation Logic
+  // ---------- Profile Image Setup ----------
+  const storedProfilePic = localStorage.getItem("profileImage");
+  if (storedProfilePic) {
+    if (navIcon) navIcon.src = storedProfilePic;
+    if (dashboardIcon) dashboardIcon.src = storedProfilePic;
+  }
+
+  // ---------- Sidebar Navigation ----------
   sidebarLinks.forEach((link, index) => {
-    link.addEventListener("click", function (event) {
+    link.addEventListener("click", (event) => {
       event.preventDefault();
 
       if (index === 0) {
-        profileSection.scrollIntoView({ behavior: "smooth" });
-      } else {
-        let accordionIndex = index - 1;
-
-        accordionContents.forEach((content, i) => {
-          content.style.display = i === accordionIndex ? "block" : "none";
-          accordionButtons[i].classList.toggle("active", i === accordionIndex);
-        });
-
-        accordionButtons[accordionIndex].scrollIntoView({ behavior: "smooth" });
+        profileSection?.scrollIntoView({ behavior: "smooth" });
+        return;
       }
+
+      const accordionIndex = index - 1;
+
+      accordionContents.forEach((content, i) => {
+        const isActive = i === accordionIndex;
+        content.style.display = isActive ? "block" : "none";
+        accordionButtons[i].classList.toggle("active", isActive);
+      });
+
+      accordionButtons[accordionIndex]?.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  accordionButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      this.classList.toggle("active");
-      const content = this.nextElementSibling;
+  // ---------- Accordion Toggle ----------
+  accordionButtons.forEach((button, idx) => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      const isCurrentlyVisible = content.style.display === "block";
 
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        accordionContents.forEach((c) => (c.style.display = "none"));
+      accordionContents.forEach((c, i) => {
+        c.style.display = "none";
+        accordionButtons[i].classList.remove("active");
+      });
+
+      if (!isCurrentlyVisible) {
         content.style.display = "block";
+        button.classList.add("active");
       }
     });
   });
 
-  // Load profile picture from localStorage
-  const storedProfilePic = localStorage.getItem("profileImage");
-  const navIcon = document.getElementById("navProfileIcon");
-  const dashboardIcon = document.getElementById("dashboardProfile");
-
-  if (storedProfilePic) {
-    navIcon.src = storedProfilePic;
-    dashboardIcon.src = storedProfilePic;
-  }
-});
-
-// dashboard.js
-
-document.addEventListener("DOMContentLoaded", async () => {
+  // ---------- User Info Fetch + Auth Handling ----------
   try {
     const res = await fetch("https://pbl-backend-cqot.onrender.com/auth/user", {
       credentials: "include",
     });
 
-    if (res.ok) {
-      const data = await res.json();
-      const username = data.user.fullname || data.user.email;
+    if (!res.ok) throw new Error("Not authenticated");
 
-      // Replace the welcome text
-      const nameEl = document.querySelector(".profile-info h3");
-      if (nameEl) {
-        nameEl.textContent = `Welcome, ${username}!`;
-      }
+    const data = await res.json();
+    const username = data.user.fullname || data.user.email;
 
-      // Optional: toggle login/logout button
-      const loginBtn = document.getElementById("loginToggle");
-      if (loginBtn) {
-        loginBtn.textContent = "Logout";
-        loginBtn.onclick = async () => {
+    const nameEl = document.querySelector(".profile-info h3");
+    if (nameEl) {
+      nameEl.textContent = `Welcome, ${username}!`;
+    }
+
+    if (loginBtn) {
+      loginBtn.textContent = "Logout";
+      loginBtn.addEventListener("click", async () => {
+        try {
           await fetch("https://pbl-backend-cqot.onrender.com/auth/logout", {
             method: "POST",
             credentials: "include",
           });
+        } catch (e) {
+          console.error("Logout failed", e);
+        } finally {
           window.location.href = "../login/login.html";
-        };
-      }
-
-    } else {
-      // Not logged in - redirect to login
-      window.location.href = "../login/login.html";
+        }
+      });
     }
-
   } catch (err) {
-    console.error("Error fetching user info", err);
+    console.error("Auth check failed:", err);
     window.location.href = "../login/login.html";
   }
 });
-
