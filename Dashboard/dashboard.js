@@ -38,17 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const loginBtn = document.getElementById("loginToggle");
-  const isLoggedIn = true; // Simulate login state
-
-  if (isLoggedIn) {
-    loginBtn.textContent = "Logout";
-    loginBtn.onclick = () => alert("You have been logged out.");
-  } else {
-    loginBtn.textContent = "Login";
-    loginBtn.onclick = () => (window.location.href = "../login/login.html");
-  }
-
   // Load profile picture from localStorage
   const storedProfilePic = localStorage.getItem("profileImage");
   const navIcon = document.getElementById("navProfileIcon");
@@ -59,3 +48,46 @@ document.addEventListener("DOMContentLoaded", function () {
     dashboardIcon.src = storedProfilePic;
   }
 });
+
+// dashboard.js
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("https://pbl-backend-cqot.onrender.com/auth/user", {
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const username = data.user.fullname || data.user.email;
+
+      // Replace the welcome text
+      const nameEl = document.querySelector(".profile-info h3");
+      if (nameEl) {
+        nameEl.textContent = `Welcome, ${username}!`;
+      }
+
+      // Optional: toggle login/logout button
+      const loginBtn = document.getElementById("loginToggle");
+      if (loginBtn) {
+        loginBtn.textContent = "Logout";
+        loginBtn.onclick = async () => {
+          await fetch("https://pbl-backend-cqot.onrender.com/auth/logout", {
+            method: "POST",
+            credentials: "include",
+          });
+          window.location.href = "../login/login.html";
+        };
+      }
+
+    } else {
+      // Not logged in - redirect to login
+      window.location.href = "../login/login.html";
+    }
+
+  } catch (err) {
+    console.error("Error fetching user info", err);
+    window.location.href = "../login/login.html";
+  }
+});
+
