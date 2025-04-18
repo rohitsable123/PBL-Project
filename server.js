@@ -7,12 +7,15 @@ const path = require('path');
 
 const app = express();
 
+app.use(express.json());
+app.use(require('cookie-parser')()); // if you haven’t already
+
 // Serve static frontend files
 app.use(express.static(path.join(__dirname)));
 
 // Enable CORS for GitHub Pages
 app.use(cors({
-  origin:['https://rohitsable123.github.io', 'http://127.0.0.1:5500'],
+  origin:'https://rohitsable123.github.io',
   methods: ['GET', 'POST'],
   credentials: true
 }));
