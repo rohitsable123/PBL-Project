@@ -98,7 +98,12 @@ router.get('/user', (req, res) => {
 
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie('connect.sid');
+    res.clearCookie('connect.sid'); // clear session cookie (if used)
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'None',
+    }); // clear JWT cookie
     res.json({ message: 'Logged out' });
   });
 });
