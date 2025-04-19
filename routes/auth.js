@@ -1,5 +1,4 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const db = require('../db');
@@ -62,16 +61,7 @@ router.post('/login', (req, res) => {
     if (!match) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-
-    const token = jwt.sign({ id: user._id }, "your_secret", { expiresIn: "1d" });
-
-  // Set the token in a cookie
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,             
-    sameSite: "None",          
-  });
-
+    
     req.session.user = {
       id: user.id,
       fullname: user.fullname,
@@ -99,12 +89,7 @@ router.get('/user', (req, res) => {
 
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie('connect.sid'); // clear session cookie (if used)
-    res.clearCookie('token', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'None',
-    }); // clear JWT cookie
+    res.clearCookie('connect.sid'); 
     res.json({ message: 'Logged out' });
   });
 });
