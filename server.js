@@ -26,7 +26,12 @@ app.use(bodyParser.json());
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None'
+  }
 }));
 
 // Mount routes
