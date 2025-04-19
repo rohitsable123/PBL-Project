@@ -7,9 +7,6 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.json());
-app.use(require('cookie-parser')()); // if you haven’t already
-
 // Serve static frontend files
 app.use(express.static(path.join(__dirname)));
 
