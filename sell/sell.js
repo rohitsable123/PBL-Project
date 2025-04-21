@@ -94,38 +94,39 @@ function updateEstimate() {
 document.getElementById("sellingForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const userPrice = parseFloat(document.getElementById("userPrice").value);
-  const originalPrice = parseFloat(document.getElementById("originalPrice").value);
+  // Create FormData object (it can handle file + text)
+  const formData = new FormData();
+  formData.append("bookName", document.getElementById("bookName").value);
+  formData.append("bookAuthor", document.getElementById("bookAuthor").value);
+  formData.append("originalPrice", document.getElementById("originalPrice").value);
+  formData.append("userPrice", document.getElementById("userPrice").value);
+  formData.append("bookImage", document.getElementById("bookImage").files[0]);
 
-  let noCount = 0;
-  document.querySelectorAll(".mcq").forEach(q => {
-    if (q.value === "no") noCount++;
-  });
+  // Get grade from UI (e.g., A, B, C)
+  const gradeText = document.getElementById("gradeLabel").textContent;
+  const grade = gradeText.includes("Grade:") ? gradeText.split("Grade:")[1].trim().split(" ")[0] : "Unknown";
+  formData.append("grade", grade);
 
-  let minPercent = 0, maxPercent = 0;
-  if (noCount === 0) {
-    minPercent = 0.05;
-    maxPercent = 0.15;
-  } else if (noCount <= 2) {
-    minPercent = 0.15;
-    maxPercent = 0.25;
-  } else if (noCount <= 4) {
-    minPercent = 0.25;
-    maxPercent = 0.30;
-  } else if (noCount <= 6) {
-    minPercent = 0.30;
-    maxPercent = 0.40;
-  } else if (noCount === 7) {
-    minPercent = 0.50;
-    maxPercent = 0.70;
-  }
-
-  const maxAllowedPrice = originalPrice * (1 - minPercent);
-
-  if (userPrice > maxAllowedPrice) {
-    alert(`Selling price cannot exceed ₹${maxAllowedPrice.toFixed(2)}.`);
-    return;
-  }
-
-  alert("Book listed successfully!");
+  // Send to backend using fetch
+  fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
+    method: "POST",
+    credentials: "include", // important if you use sessions
+    body: formData
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert("Book listed successfully!");
+        document.getElementById("sellingForm").reset();
+        priceDisplay.textContent = "0";
+        gradeLabel.textContent = "";
+        priceRangeText.textContent = "";
+      } else {
+        alert("Failed to list book.");
+      }
+    })
+    .catch(err => {
+      console.error("Error uploading book:", err);
+      alert("Error listing the book.");
+    });
 });
