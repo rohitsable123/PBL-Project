@@ -12,6 +12,9 @@ const mcqs = [
 ];
 
 const mcqSection = document.getElementById("mcqSection");
+const priceDisplay = document.getElementById("estimatedPrice");
+const gradeLabel = document.getElementById("gradeLabel");
+const priceRangeText = document.getElementById("priceRangeText");
 
 mcqs.forEach((question, index) => {
   const wrapper = document.createElement("div");
@@ -26,10 +29,15 @@ mcqs.forEach((question, index) => {
   mcqSection.appendChild(wrapper);
 });
 
-function calculatePrice() {
+document.querySelectorAll(".mcq, #originalPrice").forEach(el => {
+  el.addEventListener("change", updateEstimate);
+});
+
+function updateEstimate() {
   const originalPrice = parseFloat(document.getElementById("originalPrice").value);
   if (isNaN(originalPrice) || originalPrice <= 0) {
-    alert("Please enter a valid original price.");
+    priceDisplay.textContent = "0";
+    gradeLabel.textContent = "";
     return;
   }
 
@@ -38,16 +46,15 @@ function calculatePrice() {
   for (let answer of answers) {
     if (answer.value === "no") noCount++;
     if (answer.value === "") {
-      alert("Please answer all MCQs.");
+      priceDisplay.textContent = "0";
+      gradeLabel.textContent = "";
+      priceRangeText.textContent = "";
       return;
     }
   }
 
-  const priceDisplay = document.getElementById("estimatedPrice");
-  const gradeLabel = document.getElementById("gradeLabel");
   let minPercent = 0, maxPercent = 0, grade = "";
 
-  // ✅ Correct grading logic
   if (noCount === 0) {
     grade = "A";
     minPercent = 0.05;
@@ -69,8 +76,10 @@ function calculatePrice() {
     minPercent = 0.50;
     maxPercent = 0.70;
   } else {
+    grade = "Not Sellable";
     priceDisplay.textContent = "0";
     gradeLabel.textContent = "Grade: Not Sellable | Too many issues.";
+    priceRangeText.textContent = "";
     return;
   }
 
@@ -78,5 +87,45 @@ function calculatePrice() {
   const maxPrice = originalPrice * (1 - minPercent);
 
   priceDisplay.textContent = `${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}`;
-  gradeLabel.textContent = `Grade: ${grade} | Estimated Range: ₹${minPrice.toFixed(2)} - ₹${maxPrice.toFixed(2)} (Max Limit)`;
+  gradeLabel.textContent = `Grade: ${grade}`;
+  priceRangeText.textContent = `Suggested Selling Price Range: ₹${minPrice.toFixed(2)} – ₹${maxPrice.toFixed(2)}`;
 }
+
+document.getElementById("sellingForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const userPrice = parseFloat(document.getElementById("userPrice").value);
+  const originalPrice = parseFloat(document.getElementById("originalPrice").value);
+
+  let noCount = 0;
+  document.querySelectorAll(".mcq").forEach(q => {
+    if (q.value === "no") noCount++;
+  });
+
+  let minPercent = 0, maxPercent = 0;
+  if (noCount === 0) {
+    minPercent = 0.05;
+    maxPercent = 0.15;
+  } else if (noCount <= 2) {
+    minPercent = 0.15;
+    maxPercent = 0.25;
+  } else if (noCount <= 4) {
+    minPercent = 0.25;
+    maxPercent = 0.30;
+  } else if (noCount <= 6) {
+    minPercent = 0.30;
+    maxPercent = 0.40;
+  } else if (noCount === 7) {
+    minPercent = 0.50;
+    maxPercent = 0.70;
+  }
+
+  const maxAllowedPrice = originalPrice * (1 - minPercent);
+
+  if (userPrice > maxAllowedPrice) {
+    alert(`Selling price cannot exceed ₹${maxAllowedPrice.toFixed(2)}.`);
+    return;
+  }
+
+  alert("Book listed successfully!");
+});
