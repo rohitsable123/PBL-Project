@@ -6,11 +6,27 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  background-image: url('selljpg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #fff8;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -20,12 +36,17 @@ body {
   max-width: 600px;
   width: 100%;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
 }
 
-h1 {
-  text-align: center;
+.header-box {
+  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  padding: 15px;
+  border-radius: 12px;
   margin-bottom: 25px;
-  color: #333;
+  text-align: center;
+  color: white;
 }
 
 form label {
@@ -51,13 +72,14 @@ form select {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   background-color: #ff9800;
   color: white;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
 }
 
 button:hover {
@@ -65,7 +87,17 @@ button:hover {
 }
 
 .result {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 18px;
   color: #222;
+}
+
+.grade-label {
+  font-weight: bold;
+  color: #006600;
+}
+
+#priceRangeText {
+  font-size: 14px;
+  color: #444;
 }
