@@ -1,11 +1,13 @@
+/* General Styling */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  background-color: #f4f4f4;
   background-image: url('selljpg.jpg');
   background-size: cover;
   background-position: center;
@@ -16,32 +18,73 @@ body {
   justify-content: center;
 }
 
-.back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #fff8;
-  padding: 8px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+/* Navigation Bar */
+header {
+  background: linear-gradient(to right, #3e3d65, #6b67a3);
+  padding: 10px 0;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 150px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 100px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.login-btn {
+  background-color: gold;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Sell Page Container */
 .container {
   background: #ffffffcc;
   padding: 30px;
   border-radius: 20px;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;
 }
 
+/* Header Box */
 .header-box {
-  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  background: linear-gradient(135deg, #3e3d65, #6b67a3); /* Purple gradient */
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 25px;
@@ -49,6 +92,7 @@ body {
   color: white;
 }
 
+/* Form Styling */
 form label {
   display: block;
   margin-top: 15px;
@@ -70,11 +114,12 @@ form select {
   background-color: #fff;
 }
 
+/* Button */
 button {
   margin-top: 20px;
   padding: 12px 20px;
   border: none;
-  background-color: #ff9800;
+  background-color: #3c3c7b; /* Purple button */
   color: white;
   border-radius: 10px;
   cursor: pointer;
@@ -83,9 +128,10 @@ button {
 }
 
 button:hover {
-  background-color: #e68a00;
+  background-color: #2e2e64; /* Darker purple on hover */
 }
 
+/* Result */
 .result {
   margin-top: 20px;
   font-size: 18px;
@@ -100,4 +146,46 @@ button:hover {
 #priceRangeText {
   font-size: 14px;
   color: #444;
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #fff8;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  nav ul {
+    gap: 15px;
+  }
+
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .back-button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  button {
+    font-size: 14px;
+  }
 }
