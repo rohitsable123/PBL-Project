@@ -1,3 +1,5 @@
+<!-- UPDATED HTML -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,7 @@
     <nav>
       <button class="back-btn" onclick="goBack()">&#8592;</button>
       <div class="logo">ReRead</div>
-      <button class="notif-btn" onclick="showNotifications()">🔔</button>
+      <!-- Notification button removed -->
     </nav>
   </header>
 
@@ -56,8 +58,11 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
+        </div>
 
-          <button type="button" id="saveChangesBtn" onclick="saveProfile()" class="hidden">Save Changes</button>
+        <!-- Save Button: now visible at bottom -->
+        <div class="save-btn-container">
+          <button type="button" id="saveChangesBtn" onclick="saveProfile()">Save</button>
         </div>
 
         <div class="action-buttons">
