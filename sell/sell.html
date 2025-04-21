@@ -4,116 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ReRead - Selling Page</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-image: url('sell/selljpg.jpg'); /* ✅ Your background image */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.85); /* Slight transparency for visibility */
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #333;
-    }
-
-    form label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    form input[type="text"],
-    form input[type="number"],
-    form input[type="file"],
-    form select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    form select {
-      background-color: #fff;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #ff9800;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background-color: #e68a00;
-    }
-
-    .result {
-      margin-top: 15px;
-      font-size: 18px;
-      color: #222;
-    }
-
-    .grade-label {
-      font-weight: bold;
-      color: #006600;
-    }
-
-    .back-btn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .back-btn:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-  </style>
+  <link rel="stylesheet" href="sell.css">
 </head>
 <body>
-
-  <!-- Back Button -->
-  <a href="Explore pg/explore.html">
-    <button class="back-btn">Back</button>
-  </a>
+  <a href="../index.html" class="back-button">←</a>
 
   <div class="container">
-    <h1>Sell Your Book</h1>
-    
+    <div class="header-box">
+      <h1>Sell Your Book</h1>
+    </div>
+
     <form id="sellingForm">
       <label for="bookName">Book Name:</label>
       <input type="text" id="bookName" name="bookName" required>
@@ -128,108 +28,21 @@
       <input type="file" id="bookImage" accept="image/*" required>
 
       <h3>Book Condition (MCQs)</h3>
-      <div id="mcqSection">
-        <!-- MCQs will be inserted here dynamically by JS -->
-      </div>
-
-      <button type="button" onclick="calculatePrice()">Calculate Estimated Price</button>
+      <div id="mcqSection"></div>
 
       <div class="result">
         <p class="grade-label" id="gradeLabel"></p>
         <strong>Estimated Price: ₹<span id="estimatedPrice">0</span></strong>
+        <p id="priceRangeText"></p>
       </div>
 
-      <button type="submit">Deploy</button>
+      <label for="userPrice">Your Selling Price (in ₹):</label>
+      <input type="number" id="userPrice" name="userPrice" placeholder="Enter your selling price" required>
+
+      <button type="submit">List Book for Sale</button>
     </form>
   </div>
 
-  <script>
-    const mcqs = [
-      "Is the book cover intact?",
-      "Are all pages present?",
-      "Is there any water damage?",
-      "Is the binding in good condition?",
-      "Are there any torn pages?",
-      "Is the text easily readable?",
-      "Is there any handwriting inside?",
-      "Is the book free from stains?",
-      "Does the book smell okay?",
-      "Is the spine undamaged?"
-    ];
-
-    const mcqSection = document.getElementById("mcqSection");
-
-    mcqs.forEach((question, index) => {
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = `  
-        <label>${index + 1}. ${question}</label>
-        <select id="q${index + 1}" class="mcq">
-          <option value="">--Select--</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      `;
-      mcqSection.appendChild(wrapper);
-    });
-
-    function calculatePrice() {
-      const originalPrice = parseFloat(document.getElementById("originalPrice").value);
-      if (isNaN(originalPrice) || originalPrice <= 0) {
-        alert("Please enter a valid original price.");
-        return;
-      }
-
-      let noCount = 0;
-      const answers = document.querySelectorAll(".mcq");
-      for (let answer of answers) {
-        if (answer.value === "no") noCount++;
-        if (answer.value === "") {
-          alert("Please answer all MCQs.");
-          return;
-        }
-      }
-
-      const priceDisplay = document.getElementById("estimatedPrice");
-      const gradeLabel = document.getElementById("gradeLabel");
-      let minPercent = 0, maxPercent = 0, grade = "";
-
-      if (noCount === 0) {
-        grade = "A";
-        minPercent = 0.05;
-        maxPercent = 0.15;
-      } else if (noCount <= 2) {
-        grade = "B";
-        minPercent = 0.15;
-        maxPercent = 0.25;
-      } else if (noCount <= 4) {
-        grade = "C";
-        minPercent = 0.25;
-        maxPercent = 0.30;
-      } else if (noCount <= 6) {
-        grade = "D";
-        minPercent = 0.30;
-        maxPercent = 0.40;
-      } else if (noCount === 7) {
-        grade = "E";
-        minPercent = 0.50;
-        maxPercent = 0.70;
-      } else {
-        priceDisplay.textContent = "0";
-        gradeLabel.textContent = "Grade: Not Sellable | Too many issues.";
-        return;
-      }
-
-      const minPrice = originalPrice * (1 - maxPercent);
-      const maxPrice = originalPrice * (1 - minPercent);
-
-      priceDisplay.textContent = `${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}`;
-      gradeLabel.textContent = `Grade: ${grade} | Estimated Range: ₹${minPrice.toFixed(2)} - ₹${maxPrice.toFixed(2)} (Max Limit)`;
-    }
-
-    document.getElementById("sellingForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Book listing deployed!");
-    });
-  </script>
+  <script src="sell.js"></script>
 </body>
 </html>
