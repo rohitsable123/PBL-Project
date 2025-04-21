@@ -40,10 +40,6 @@ app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
 
-/******************/
-const cartRoutes = require('./routes/cart');
-app.use('/api/cart', cartRoutes);
-
 
 /******************/
 const sellRoutes = require('./routes/sell');
