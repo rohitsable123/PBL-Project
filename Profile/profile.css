@@ -147,3 +147,21 @@ footer {
   margin: 0 10px;
   text-decoration: none;
 }
+.save-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#saveChangesBtn {
+  background-color: #6b67a3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#saveChangesBtn:hover {
+  background-color: #5a5591;
+}
