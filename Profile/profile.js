@@ -15,13 +15,9 @@ function checkProfileCompletion() {
   const age = document.getElementById("age").value;
   const region = document.getElementById("region").value;
   const gender = document.getElementById("gender").value;
-  const saveBtn = document.getElementById("saveChangesBtn");
 
-  if (age && region && gender) {
-    saveBtn.classList.remove("hidden");
-  } else {
-    saveBtn.classList.add("hidden");
-  }
+  // No need to toggle save button anymore (always visible)
+  // Keeping function in case you want future logic
 }
 
 function saveProfile() {
