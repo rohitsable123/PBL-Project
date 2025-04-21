@@ -18,10 +18,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-image: url('sell/selljpg.jpg'); /* Correct path to the image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
     .container {
-      background: #ffffffcc;
+      background: rgba(255, 255, 255, 0.8); /* Slight opacity for better visibility of the background */
       padding: 30px;
       border-radius: 20px;
       max-width: 600px;
@@ -29,14 +33,6 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       position: relative;
       z-index: 1;
-    }
-
-    /* Add background image to the body */
-    body {
-      background-image: url('selljpg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
     }
 
     h1 {
@@ -91,9 +87,31 @@
       font-weight: bold;
       color: #006600;
     }
+
+    /* Back button styles */
+    .back-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
 <body>
+  <!-- Back Button -->
+  <a href="Explore pg/explore.html">
+    <button class="back-btn">Back</button>
+  </a>
+
   <div class="container">
     <h1>Sell Your Book</h1>
     
@@ -144,7 +162,7 @@
 
     mcqs.forEach((question, index) => {
       const wrapper = document.createElement("div");
-      wrapper.innerHTML = `
+      wrapper.innerHTML = `  
         <label>${index + 1}. ${question}</label>
         <select id="q${index + 1}" class="mcq">
           <option value="">--Select--</option>
@@ -176,7 +194,6 @@
       const gradeLabel = document.getElementById("gradeLabel");
       let minPercent = 0, maxPercent = 0, grade = "";
 
-      // ✅ Correct grading logic
       if (noCount === 0) {
         grade = "A";
         minPercent = 0.05;
