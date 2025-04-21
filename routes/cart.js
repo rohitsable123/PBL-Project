@@ -53,4 +53,20 @@ router.delete("/:id", isAuthenticated, (req, res) => {
   );
 });
 
+// Update quantity
+router.put("/update/:id", isAuthenticated, (req, res) => {
+  const { quantity } = req.body;
+  const userId = req.session.userId;
+  const cartId = req.params.id;
+
+  db.query(
+    "UPDATE cart SET quantity = ? WHERE id = ? AND user_id = ?",
+    [quantity, cartId, userId],
+    (err) => {
+      if (err) return res.status(500).json({ error: "DB error" });
+      res.json({ success: true });
+    }
+  );
+});
+
 module.exports = router;
