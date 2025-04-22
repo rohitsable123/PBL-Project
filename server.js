@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const authRoutes = require('./routes/auth');
 const path = require('path');
-require('dotenv').config();
 
 
 const app = express();
