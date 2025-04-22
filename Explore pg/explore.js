@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const card = document.createElement("div");
         card.className = "book-card";
         card.innerHTML = `
-          <img src="https://pbl-backend-cqot.onrender.com/uploads/${book.image}" alt="Book Image">
-          <h3>${book.title}</h3>
+          <img src="${book.image_url}" alt="Book Image">
+          <h3>${book.name}</h3>
           <p>By ${book.author}</p>
-          <p>₹${book.price}</p>
+          <p>₹${book.user_price}</p>
           <button class="add-cart-btn">Add to Cart</button>
         `;
         bookList.appendChild(card);
