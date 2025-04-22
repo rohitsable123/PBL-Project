@@ -92,7 +92,7 @@ function updateEstimate() {
   priceRangeText.textContent = `Suggested Selling Price Range: ₹${minPrice.toFixed(2)} – ₹${maxPrice.toFixed(2)}`;
 }
 
-document.getElementById("sellingForm").addEventListener("submit", function (e) {
+document.getElementById("sellingForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const userPrice = parseFloat(document.getElementById("userPrice").value);
@@ -103,30 +103,37 @@ document.getElementById("sellingForm").addEventListener("submit", function (e) {
     if (q.value === "no") noCount++;
   });
 
-  let minPercent = 0, maxPercent = 0;
-  if (noCount === 0) {
-    minPercent = 0.05;
-    maxPercent = 0.15;
-  } else if (noCount <= 2) {
-    minPercent = 0.15;
-    maxPercent = 0.25;
-  } else if (noCount <= 4) {
-    minPercent = 0.25;
-    maxPercent = 0.30;
-  } else if (noCount <= 6) {
-    minPercent = 0.30;
-    maxPercent = 0.40;
-  } else if (noCount === 7) {
-    minPercent = 0.50;
-    maxPercent = 0.70;
-  }
+  let minPercent = 0;
+  if (noCount === 0) minPercent = 0.05;
+  else if (noCount <= 2) minPercent = 0.15;
+  else if (noCount <= 4) minPercent = 0.25;
+  else if (noCount <= 6) minPercent = 0.30;
+  else if (noCount === 7) minPercent = 0.50;
 
   const maxAllowedPrice = originalPrice * (1 - minPercent);
-
   if (userPrice > maxAllowedPrice) {
     alert(`Selling price cannot exceed ₹${maxAllowedPrice.toFixed(2)}.`);
     return;
   }
 
-  alert("Book listed successfully!");
+  const formData = new FormData(document.getElementById("sellingForm"));
+
+  try {
+    const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
+      method: "POST",
+      body: formData,
+      credentials: "include" //
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("✅ Book listed successfully!");
+    } else {
+      alert("❌ Failed to list book: " + (data.error || "Unknown error"));
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("❌ Something went wrong!");
+  }
 });
