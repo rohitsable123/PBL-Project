@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const books = await response.json();
-    bookList.innerHTML = ""; // clear loading text
+    bookList.innerHTML = "";
 
     if (Array.isArray(books) && books.length > 0) {
       books.forEach(book => {
