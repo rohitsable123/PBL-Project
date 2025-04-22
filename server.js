@@ -47,3 +47,9 @@ app.listen(PORT, () => {
 const sellRoutes = require('./routes/sell');
 app.use('/api/sell', sellRoutes);
 app.use('/uploads', express.static('uploads'));
+
+
+/*******************/
+const exploreRoute = require("./routes/explore");
+app.use("/api/explore", exploreRoute);
+
