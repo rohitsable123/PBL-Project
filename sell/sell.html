@@ -14,7 +14,7 @@
       <h1>Sell Your Book</h1>
     </div>
 
-    <form id="sellingForm">
+    <form id="sellingForm" enctype="multipart/form-data">
       <label for="bookName">Book Name:</label>
       <input type="text" id="bookName" name="bookName" required>
 
@@ -25,7 +25,8 @@
       <input type="number" id="originalPrice" name="originalPrice" placeholder="e.g., 300" required>
 
       <label for="bookImage">Upload Book Photo:</label>
-      <input type="file" id="bookImage" accept="image/*" required>
+      <input type="file" id="bookImage" name="bookImage" accept="image/*" required>
+
 
       <h3>Book Condition (MCQs)</h3>
       <div id="mcqSection"></div>
