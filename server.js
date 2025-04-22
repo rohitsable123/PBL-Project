@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const authRoutes = require('./routes/auth');
 const path = require('path');
+require('dotenv').config();
+
 
 const app = express();
 
@@ -12,7 +14,7 @@ app.use(express.static(path.join(__dirname)));
 
 // Enable CORS for GitHub Pages
 app.use(cors({
-  origin:'https://rohitsable123.github.io',
+  origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST'],
   credentials: true
 }));
@@ -21,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({
-  secret: 'your_secret_key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
 }));
