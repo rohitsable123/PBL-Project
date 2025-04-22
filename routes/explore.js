@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const db = require("../db");
+const db = require('../db');
 
-// GET all listed books
-router.get("/", (req, res) => {
-  const query = "SELECT id, title, author, price, image FROM books";
+// GET route to fetch all books
+router.get('/', (req, res) => {
+  const sql = `SELECT id, name, author, user_price, grade, image_url FROM books ORDER BY listed_at DESC`;
 
-  db.query(query, (err, results) => {
+  db.query(sql, (err, results) => {
     if (err) {
-      console.error("Error fetching books:", err);
-      return res.status(500).json({ error: "Internal server error" });
+      console.error('Error fetching books:', err);
+      return res.status(500).json({ error: 'Failed to fetch books' });
     }
     res.json(results);
   });
