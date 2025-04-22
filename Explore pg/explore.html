@@ -119,38 +119,5 @@
     <p>© 2025 ReRead. All Rights Reserved.</p>
   </footer>
   <script src="../session.js"></script>
-
-  <script>
-  async function loadBooks() {
-    try {
-      const res = await fetch("https://pbl-backend-cqot.onrender.com/api/explore");
-      const books = await res.json();
-
-      const bookList = document.querySelector(".book-list");
-      bookList.innerHTML = ""; 
-
-      books.forEach(book => {
-        const card = document.createElement("div");
-        card.className = "book-card";
-
-        card.innerHTML = `
-          <img src="${book.image_url}" alt="Book">
-          <h3>${book.name}</h3>
-          <p>By ${book.author}</p>
-          <p>₹${book.user_price}</p>
-          <button class="add-cart-btn">Add to Cart</button>
-        `;
-
-        bookList.appendChild(card);
-      });
-
-    } catch (err) {
-      console.error("Failed to load books:", err);
-    }
-  }
-
-  window.addEventListener("DOMContentLoaded", loadBooks);
-</script>
-  
 </body>
 </html>
