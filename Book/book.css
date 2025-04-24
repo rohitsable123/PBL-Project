@@ -7,7 +7,7 @@
 }
 
 body {
-  background: url('/Explore pg/explore.jpg') no-repeat center center fixed;
+  background: url('explore.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
   display: flex;
