@@ -17,19 +17,27 @@ body {
 
 .book-details-container {
   flex: 1;
-  padding: 50px 10%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
 }
 
 #book-details {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 30px;
-  border-radius: 15px;
-  color: #333;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease;
 }
+
+#book-details:hover {
+  transform: translateY(-5px);
+}
+
 
 .book-image {
   width: 150px;
