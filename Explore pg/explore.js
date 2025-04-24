@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           <p>₹${book.user_price}</p>
           <button class="add-cart-btn">Add to Cart</button>
         `;
+
+
+        card.addEventListener("click", (event) => {
+          
+          if (!event.target.classList.contains("add-cart-btn")) {
+            window.location.href = `../Book/book.html?id=${book.id}`;
+          }
+        });
+
         bookList.appendChild(card);
       });
     } else {
