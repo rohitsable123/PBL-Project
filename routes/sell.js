@@ -33,18 +33,19 @@ function isAuthenticated(req, res, next) {
 router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
   const userId = req.session.userId;
   const {
-    bookName,
-    bookAuthor,
-    originalPrice,
-    userPrice,
-    grade
-  } = req.body;
+  bookName,
+  bookAuthor,
+  originalPrice,
+  userPrice,
+  grade,
+  conditions
+} = req.body;
+
 
   const imageUrl = req.file.path; 
-
   const sql = `
-    INSERT INTO books (user_id, name, author, original_price, user_price, grade, image_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO books (user_id, name, author, original_price, user_price, grade, conditions, image_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, imageUrl], (err) => {
