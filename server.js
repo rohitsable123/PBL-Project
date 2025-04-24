@@ -28,8 +28,15 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+
 // Mount routes
+const sellRoutes = require('./routes/sell');
+const exploreRoute = require('./routes/explore');
+
 app.use('/auth', authRoutes);
+app.use('/api/sell', sellRoutes);
+app.use('/uploads', express.static('uploads'));
+app.use('/api/explore', exploreRoute);
 
 // Root route for test
 app.get('/', (req, res) => {
