@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.addEventListener("click", (event) => {
           
           if (!event.target.classList.contains("add-cart-btn")) {
-            window.location.href = `../Book/book.html?id=${book.id}`;
+            window.location.href = `https://rohitsable123.github.io/PBL-Project/Book/book.html?id=${book.id}`;
+
           }
         });
 
