@@ -21,6 +21,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 60px 20px;
+  color: black;
 }
 
 #book-details {
