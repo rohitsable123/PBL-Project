@@ -48,6 +48,18 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.book-details-container p,
+.book-details-container label,
+.book-details-container select,
+.book-details-container h2 {
+  color: white;
+}
+
+.book-details-container select {
+  background-color: white;
+  color: #333; /* dark text inside dropdown */
+}
+
 
 h2 {
   font-size: 26px;
