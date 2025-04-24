@@ -4,7 +4,7 @@ const db = require('../db');
 
 // GET route to fetch all books
 router.get('/', (req, res) => {
-  const sql = `SELECT id, fullname, author, user_price, grade, image_url FROM books ORDER BY listed_at DESC`;
+  const sql = `SELECT id, name, author, user_price, grade, image_url FROM books ORDER BY listed_at DESC`;
 
   db.query(sql, (err, results) => {
     if (err) {
