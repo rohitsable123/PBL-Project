@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
   });
 });
 
-module.exports = router;
-
 router.get('/:id', (req, res) => {
   const bookId = req.params.id;
   const sql = `
@@ -31,3 +29,5 @@ router.get('/:id', (req, res) => {
     res.json(results[0]);
   });
 });
+
+module.exports = router;
