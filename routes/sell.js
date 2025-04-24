@@ -48,7 +48,7 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, imageUrl], (err) => {
+  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, conditions, imageUrl], (err) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Failed to list book' });
