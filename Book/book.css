@@ -1,21 +1,80 @@
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url('../explore.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
 .book-details-container {
-  padding: 40px;
+  flex: 1;
+  padding: 50px 10%;
   text-align: center;
 }
 
+#book-details {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  color: #333;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 .book-image {
-  width: 200px;
+  width: 150px;
   height: auto;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 
-.whatsapp-button {
-  background-color: #25D366;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
+h2 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #3c3c7b;
 }
 
+p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.whatsapp-button {
+  margin-top: 25px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5b;
+}
