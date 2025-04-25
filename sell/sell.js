@@ -99,16 +99,25 @@ document.getElementById("sellingForm").addEventListener("submit", async function
   const originalPrice = parseFloat(document.getElementById("originalPrice").value);
 
   let noCount = 0;
+  const mcqValues = [];
   document.querySelectorAll(".mcq").forEach(q => {
     if (q.value === "no") noCount++;
+    mcqValues.push(`${q.previousElementSibling.textContent} - ${q.value}`);
   });
 
   let minPercent = 0;
-  if (noCount === 0) minPercent = 0.05;
-  else if (noCount <= 2) minPercent = 0.15;
-  else if (noCount <= 4) minPercent = 0.25;
-  else if (noCount <= 6) minPercent = 0.30;
-  else if (noCount === 7) minPercent = 0.50;
+  let grade = "Not Sellable";
+  if (noCount === 0) {
+    grade = "A"; minPercent = 0.05;
+  } else if (noCount <= 2) {
+    grade = "B"; minPercent = 0.15;
+  } else if (noCount <= 4) {
+    grade = "C"; minPercent = 0.25;
+  } else if (noCount <= 6) {
+    grade = "D"; minPercent = 0.30;
+  } else if (noCount === 7) {
+    grade = "E"; minPercent = 0.50;
+  }
 
   const maxAllowedPrice = originalPrice * (1 - minPercent);
   if (userPrice > maxAllowedPrice) {
@@ -117,23 +126,14 @@ document.getElementById("sellingForm").addEventListener("submit", async function
   }
 
   const formData = new FormData(document.getElementById("sellingForm"));
+  formData.append("grade", grade);
+  formData.append("conditions", mcqValues.join(", ")); // Append as string
 
-  // Set the grade hidden field
-document.getElementById("grade").value = gradeLabel.textContent.replace("Grade: ", "");
-
-// Combine selected condition questions as a comma-separated string
-const selectedConditions = [];
-document.querySelectorAll(".mcq").forEach((q, i) => {
-  if (q.value === "no") selectedConditions.push(mcqs[i]);
-});
-document.getElementById("conditions").value = selectedConditions.join(", ");
-
-  
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
       method: "POST",
       body: formData,
-      credentials: "include" //
+      credentials: "include"
     });
 
     const data = await response.json();
