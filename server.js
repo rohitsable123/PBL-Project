@@ -3,16 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-const path = require('path');
-const mysql = require('mysql2');
-
-// Import routes
 const authRoutes = require('./routes/auth');
-const sellRoutes = require('./routes/sell');
-const exploreRoute = require('./routes/explore');
+const path = require('path');
+
 
 const app = express();
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname)));
 
 // Enable CORS for GitHub Pages
 app.use(cors({
@@ -24,46 +22,26 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Create a regular MySQL connection (NOT a pool)
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error('❌ Database connection failed:', err);
-  } else {
-    console.log('✅ Connected to MySQL database');
-  }
-});
-
-// Configure session store using the regular connection
-const sessionStore = new MySQLStore({}, connection);
-
-// Set up express-session with MySQL store
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: sessionStore,
   cookie: {
     sameSite: 'none',
     secure: true
   }
 }));
 
+
+
 // Mount routes
+const sellRoutes = require('./routes/sell');
+const exploreRoute = require('./routes/explore');
+
 app.use('/auth', authRoutes);
 app.use('/api/sell', sellRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/explore', exploreRoute);
-
-// Serve static frontend files
-app.use(express.static(path.join(__dirname)));
 
 // Root route for test
 app.get('/', (req, res) => {
