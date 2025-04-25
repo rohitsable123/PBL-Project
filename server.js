@@ -10,6 +10,8 @@ const mysql = require('mysql2');
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 // Serve static frontend files
 app.use(express.static(path.join(__dirname)));
 
