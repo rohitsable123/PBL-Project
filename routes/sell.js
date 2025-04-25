@@ -57,4 +57,15 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
   });
 });
 
+
+console.log("Received data:");
+console.log("bookName:", bookName);
+console.log("bookAuthor:", bookAuthor);
+console.log("originalPrice:", originalPrice);
+console.log("userPrice:", userPrice);
+console.log("grade:", grade);
+console.log("conditions:", conditions);
+console.log("imageUrl:", imageUrl);
+
+
 module.exports = router;
