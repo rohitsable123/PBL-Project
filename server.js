@@ -1,65 +1,77 @@
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const mysql = require('mysql');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth');
-const exploreRoutes = require('./routes/explore');
-const sellRoutes = require('./routes/sell');
-const cartRoutes = require('./routes/cart');
+const path = require('path');
+const mysql = require('mysql2');
 
-dotenv.config();
+// Import routes
+const authRoutes = require('./routes/auth');
+const sellRoutes = require('./routes/sell');
+const exploreRoute = require('./routes/explore');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Create plain MySQL connection (NOT a pool)
-const db = mysql.createConnection({
+// Enable CORS for GitHub Pages
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Create a regular MySQL connection (NOT a pool)
+const connection = mysql.createConnection({
   host: process.env.DB_HOST,
+  port: 3306,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306
+  database: process.env.DB_NAME
 });
 
-db.connect((err) => {
+connection.connect((err) => {
   if (err) {
-    console.error('Database connection failed: ', err);
+    console.error('❌ Database connection failed:', err);
   } else {
-    console.log('Connected to MySQL database');
+    console.log('✅ Connected to MySQL database');
   }
 });
 
-// Session store using the connection
-const sessionStore = new MySQLStore({}, db);
+// Configure session store using the regular connection
+const sessionStore = new MySQLStore({}, connection);
 
-// Middleware
-app.use(cors({
-  origin: 'https://your-frontend-domain', // replace with your GitHub Pages domain
-  credentials: true
-}));
-app.use(express.json());
+// Set up express-session with MySQL store
 app.use(session({
-  key: 'reRead_sid',
-  secret: 'your_secret_key', // Replace with a strong secret
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: sessionStore,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
     sameSite: 'none',
     secure: true
   }
 }));
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/explore', exploreRoutes);
+// Mount routes
+app.use('/auth', authRoutes);
 app.use('/api/sell', sellRoutes);
-app.use('/api/cart', cartRoutes);
+app.use('/uploads', express.static('uploads'));
+app.use('/api/explore', exploreRoute);
 
-// Start server
+// Serve static frontend files
+app.use(express.static(path.join(__dirname)));
+
+// Root route for test
+app.get('/', (req, res) => {
+  res.send('🚀 Backend is live!');
+});
+
+// Start server (IMPORTANT: Railway needs process.env.PORT ONLY)
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
