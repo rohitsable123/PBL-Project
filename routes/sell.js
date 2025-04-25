@@ -38,17 +38,16 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
   originalPrice,
   userPrice,
   grade,
-  conditions
 } = req.body;
 
 
   const imageUrl = req.file.path; 
   const sql = `
-    INSERT INTO books (user_id, name, author, original_price, user_price, grade, conditions, image_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO books (user_id, name, author, original_price, user_price, grade, image_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?,)
   `;
 
-  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, conditions, imageUrl], (err) => {
+  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, imageUrl], (err) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Failed to list book' });
@@ -56,16 +55,5 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
     res.json({ success: true, message: 'Book listed successfully' });
   });
 });
-
-
-console.log("Received data:");
-console.log("bookName:", bookName);
-console.log("bookAuthor:", bookAuthor);
-console.log("originalPrice:", originalPrice);
-console.log("userPrice:", userPrice);
-console.log("grade:", grade);
-console.log("conditions:", conditions);
-console.log("imageUrl:", imageUrl);
-
 
 module.exports = router;
