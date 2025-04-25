@@ -1,9 +1,9 @@
-/* General Styling */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -12,18 +12,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: black;
+  color: #222;
 }
 
+/* Main Container */
 .book-details-container {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 60px 20px;
-  color: black;
 }
 
+/* Book Card */
 #book-details {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 40px 30px;
@@ -39,7 +40,7 @@ body {
   transform: translateY(-5px);
 }
 
-
+/* Book Image */
 .book-image {
   width: 180px;
   height: auto;
@@ -48,52 +49,46 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.book-details-container p,
-.book-details-container label,
-.book-details-container select,
-.book-details-container h2 {
-  color: white;
-}
-
-.book-details-container select {
-  background-color: white;
-  color: #333; /* dark text inside dropdown */
-}
-
-
+/* Typography */
 h2 {
-  font-size: 26px;
+  font-size: 28px;
   margin-bottom: 10px;
   color: #3c3c7b;
 }
 
 p {
   font-size: 16px;
-  margin: 8px 0;
+  margin: 10px 0;
+  color: #333;
 }
 
 label {
   display: block;
   margin-top: 20px;
-  font-weight: bold;
+  font-weight: 600;
+  color: #333;
 }
 
+/* Select Dropdown */
 select {
-  padding: 8px 12px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-}
-
-.whatsapp-button {
-  margin-top: 25px;
-  background-color: #25D366;
-  color: white;
-  padding: 12px 24px;
-  border: none;
+  padding: 10px 14px;
   font-size: 16px;
   border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  margin-top: 30px;
+  background-color: #25D366;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  font-size: 17px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -101,3 +96,41 @@ select {
 .whatsapp-button:hover {
   background-color: #1ebe5b;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #book-details {
+    padding: 30px 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .book-image {
+    width: 150px;
+  }
+
+  p, label, select {
+    font-size: 15px;
+  }
+
+  .whatsapp-button {
+    font-size: 16px;
+    padding: 12px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-image {
+    width: 130px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  #book-details {
+    padding: 25px 15px;
+  }
+  }
