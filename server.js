@@ -14,8 +14,6 @@ const exploreRoute = require('./routes/explore');
 
 const app = express();
 
-// Serve static frontend files
-app.use(express.static(path.join(__dirname)));
 
 // Enable CORS for GitHub Pages
 app.use(cors({
@@ -54,7 +52,11 @@ app.use('/api/sell', sellRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/explore', exploreRoute);
 
+// Serve static frontend files
+app.use(express.static(path.join(__dirname)));
+
 // Root route for test
+
 app.get('/', (req, res) => {
   res.send('🚀 Backend is live!');
 });
