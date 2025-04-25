@@ -116,18 +116,6 @@ document.getElementById("sellingForm").addEventListener("submit", async function
     return;
   }
 
-  const formData = new FormData(document.getElementById("sellingForm"));
-
-  // Set the grade hidden field
-document.getElementById("grade").value = gradeLabel.textContent.replace("Grade: ", "");
-
-// Combine selected condition questions as a comma-separated string
-const selectedConditions = [];
-document.querySelectorAll(".mcq").forEach((q, i) => {
-  if (q.value === "no") selectedConditions.push(mcqs[i]);
-});
-document.getElementById("conditions").value = selectedConditions.join(", ");
-
   
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
