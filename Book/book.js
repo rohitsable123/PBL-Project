@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
          <select id="conditions">
            ${book.conditions.split(',').map(c => `<option>${c.trim()}</option>`).join('')}
          </select>`
-      : "<p><strong>Seller Conditions:</strong> Not provided</p>";
+      : "<p><strong>Book Conditions:</strong> Not provided</p>";
 
     container.innerHTML = `
       <img src="${book.image_url}" alt="Book Image" class="book-image">
