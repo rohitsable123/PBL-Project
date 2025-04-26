@@ -6,8 +6,9 @@
 }
 
 body {
-  background-color: #f4f7fc;
-}
+  background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
 
 header {
   background: linear-gradient(to right, #3e3d65, #6b67a3);
