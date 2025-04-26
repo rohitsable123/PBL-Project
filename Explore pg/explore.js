@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", async () => {
   const bookList = document.querySelector(".book-list");
   const priceFilter = document.querySelector('select'); // First select
@@ -38,11 +37,49 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button class="add-cart-btn">Add to Cart</button>
         `;
 
+        // Handle book detail page redirection
         card.addEventListener("click", (event) => {
           if (!event.target.classList.contains("add-cart-btn")) {
             window.location.href = `https://rohitsable123.github.io/PBL-Project/Book/book.html?id=${book.id}`;
           }
         });
+
+        // Handle Add to Cart functionality
+        // Handle Add to Cart functionality
+const addToCartBtn = card.querySelector(".add-cart-btn");
+addToCartBtn.addEventListener("click", async (e) => {
+  e.stopPropagation();
+
+  const cartItem = {
+    book_title: book.name,
+    book_price: book.user_price,
+    book_image: book.image_url,
+  };
+
+  try {
+    const response = await fetch('https://pbl-backend-cqot.onrender.com/api/cart', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),
+    });
+
+    if (response.ok) {
+      addToCartBtn.disabled = true;
+      addToCartBtn.innerText = "Added to cart ✓";
+      addToCartBtn.style.backgroundColor = "#4CAF50"; // Green color
+      addToCartBtn.style.cursor = "default";
+    } else {
+      alert("Failed to add. Please login first.");
+    }
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    alert("Something went wrong!");
+  }
+});
+
 
         bookList.appendChild(card);
       });
