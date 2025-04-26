@@ -116,18 +116,22 @@ document.getElementById("sellingForm").addEventListener("submit", async function
     return;
   }
 
-  
+  // 🔥 Create the formData correctly
+  const sellingForm = document.getElementById("sellingForm");
+  const formData = new FormData(sellingForm);
+
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
       method: "POST",
       body: formData,
-      credentials: "include" //
+      credentials: "include"
     });
 
     const data = await response.json();
 
     if (response.ok) {
       alert("✅ Book listed successfully!");
+      window.location.href = "../Explore/explore.html"; // (optional) Redirect to Explore page
     } else {
       alert("❌ Failed to list book: " + (data.error || "Unknown error"));
     }
