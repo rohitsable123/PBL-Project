@@ -37,8 +37,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td><img src="${item.book_image}" alt="${item.book_title}" style="height:50px;"></td>
-        <td>${item.book_title}</td>
+        <td>
+          <a href="../Book/book.html?id=${item.book_id}">
+            <img src="${item.book_image}" alt="${item.book_title}" style="height:50px;">
+          </a>
+        </td>
+        <td>
+          <a href="../Book/book.html?id=${item.book_id}">
+            ${item.book_title}
+          </a>
+        </td>
         <td>₹${item.book_price}</td>
         <td>1</td>
         <td>₹${item.book_price}</td>
@@ -57,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         credentials: 'include',
       });
       if (response.ok) {
-        fetchCartItems(); // Reload cart after delete
+        fetchCartItems();
       }
     } catch (error) {
       console.error("Error removing item:", error);
