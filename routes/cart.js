@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // adjust path based on your project
+const db = require('../db');
 
 // Middleware to check session
 function isLoggedIn(req, res, next) {
@@ -23,18 +23,35 @@ router.get('/', isLoggedIn, (req, res) => {
   });
 });
 
-// ADD item to cart
+// ADD item to cart (UPDATED: accepts book_id also)
 router.post('/', isLoggedIn, (req, res) => {
-  const { book_title, book_price, book_image } = req.body;
+  const { book_id, book_title, book_price, book_image } = req.body;
   const userId = req.session.userId;
-  
-  const sql = 'INSERT INTO cart (user_id, book_title, book_price, book_image) VALUES (?, ?, ?, ?)';
-  db.query(sql, [userId, book_title, book_price, book_image], (err, result) => {
+
+  if (!book_id || !book_title || !book_price || !book_image) {
+    return res.status(400).json({ message: 'Missing book details' });
+  }
+
+  // Check if already in cart
+  db.query('SELECT * FROM cart WHERE user_id = ? AND book_id = ?', [userId, book_id], (err, results) => {
     if (err) {
-      console.error('Error adding to cart:', err);
+      console.error('Error checking cart:', err);
       return res.status(500).json({ message: 'Server error' });
     }
-    res.json({ message: 'Item added to cart' });
+
+    if (results.length > 0) {
+      return res.status(409).json({ message: 'Book already in cart' });
+    }
+
+    // Insert into cart
+    const sql = 'INSERT INTO cart (user_id, book_id, book_title, book_price, book_image) VALUES (?, ?, ?, ?, ?)';
+    db.query(sql, [userId, book_id, book_title, book_price, book_image], (err, result) => {
+      if (err) {
+        console.error('Error adding to cart:', err);
+        return res.status(500).json({ message: 'Server error' });
+      }
+      res.json({ message: 'Item added to cart' });
+    });
   });
 });
 
