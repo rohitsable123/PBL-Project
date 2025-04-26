@@ -41,6 +41,7 @@ app.use(session({
 const sellRoutes = require('./routes/sell');
 const exploreRoute = require('./routes/explore');
 const profileRoutes = require('./routes/profile');
+const cartRoutes = require('./routes/cart');
 
 
 app.use('/auth', authRoutes);
@@ -48,6 +49,7 @@ app.use('/api/sell', sellRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/explore', exploreRoute);
 app.use('/profile', profileRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Root route for test
 app.get('/', (req, res) => {
