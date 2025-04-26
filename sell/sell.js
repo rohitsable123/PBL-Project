@@ -1,3 +1,4 @@
+// 📚 Questions for MCQs
 const mcqs = [
   "Is the book cover in good condition?",
   "Are all pages intact and present?",
@@ -11,16 +12,18 @@ const mcqs = [
   "Is the outer appearance clean and presentable?"
 ];
 
+// 📍 DOM elements
 const mcqSection = document.getElementById("mcqSection");
 const priceDisplay = document.getElementById("estimatedPrice");
 const gradeLabel = document.getElementById("gradeLabel");
 const priceRangeText = document.getElementById("priceRangeText");
 
+// 🔥 Dynamically generate MCQs
 mcqs.forEach((question, index) => {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = `
     <label>${index + 1}. ${question}</label>
-    <select id="q${index + 1}" class="mcq">
+    <select id="q${index + 1}" class="mcq" required>
       <option value="">--Select--</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
@@ -29,12 +32,15 @@ mcqs.forEach((question, index) => {
   mcqSection.appendChild(wrapper);
 });
 
+// 📈 Attach change listeners to MCQs and original price input
 document.querySelectorAll(".mcq, #originalPrice").forEach(el => {
   el.addEventListener("change", updateEstimate);
 });
 
+// 📈 Update estimated price and grade
 function updateEstimate() {
   const originalPrice = parseFloat(document.getElementById("originalPrice").value);
+
   if (isNaN(originalPrice) || originalPrice <= 0) {
     priceDisplay.textContent = "0";
     gradeLabel.textContent = "";
@@ -92,11 +98,20 @@ function updateEstimate() {
   priceRangeText.textContent = `Suggested Selling Price Range: ₹${minPrice.toFixed(2)} – ₹${maxPrice.toFixed(2)}`;
 }
 
+// 📦 Submit form to backend
 document.getElementById("sellingForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
+  const sellingForm = document.getElementById("sellingForm");
+  const formData = new FormData(sellingForm);
+
   const userPrice = parseFloat(document.getElementById("userPrice").value);
   const originalPrice = parseFloat(document.getElementById("originalPrice").value);
+
+  if (isNaN(userPrice) || isNaN(originalPrice)) {
+    alert("Please enter valid prices.");
+    return;
+  }
 
   let noCount = 0;
   document.querySelectorAll(".mcq").forEach(q => {
@@ -111,14 +126,11 @@ document.getElementById("sellingForm").addEventListener("submit", async function
   else if (noCount === 7) minPercent = 0.50;
 
   const maxAllowedPrice = originalPrice * (1 - minPercent);
+
   if (userPrice > maxAllowedPrice) {
-    alert(`Selling price cannot exceed ₹${maxAllowedPrice.toFixed(2)}.`);
+    alert(`❌ Selling price cannot exceed ₹${maxAllowedPrice.toFixed(2)} based on the book's condition.`);
     return;
   }
-
-  // 🔥 Create the formData correctly
-  const sellingForm = document.getElementById("sellingForm");
-  const formData = new FormData(sellingForm);
 
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
@@ -131,12 +143,12 @@ document.getElementById("sellingForm").addEventListener("submit", async function
 
     if (response.ok) {
       alert("✅ Book listed successfully!");
-      window.location.href = "../Explore/explore.html"; // (optional) Redirect to Explore page
+      window.location.href = "../Explore/explore.html"; // Redirect after success
     } else {
       alert("❌ Failed to list book: " + (data.error || "Unknown error"));
     }
   } catch (err) {
     console.error("Error:", err);
-    alert("❌ Something went wrong!");
+    alert("❌ Something went wrong while listing the book!");
   }
 });
