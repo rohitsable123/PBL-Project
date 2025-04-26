@@ -132,6 +132,13 @@ document.getElementById("sellingForm").addEventListener("submit", async function
     return;
   }
 
+  // 📋 NEW: Gather MCQ answers and add conditions
+  let conditions = [];
+  document.querySelectorAll(".mcq").forEach((q, index) => {
+    conditions.push(`${mcqs[index]}: ${q.value}`);
+  });
+  formData.append("conditions", conditions.join("; ")); // adding to formData
+
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/sell", {
       method: "POST",
