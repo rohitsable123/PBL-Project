@@ -23,8 +23,8 @@
         <img id="profileImage" src="../Dashboard/profile-icon.png" alt="Profile Picture">
         <input type="file" id="uploadInput" accept="image/*">
         <div class="profile-buttons">
-          <button onclick="document.getElementById('uploadInput').click()">Add Photo</button>
-          <button id="removeBtn" onclick="removeProfile()" style="display: none;">Remove Photo</button>
+          <button type="button" onclick="document.getElementById('uploadInput').click()">Add Photo</button>
+          <button type="button" id="removeBtn" onclick="removeProfile()" style="display: none;">Remove Photo</button>
         </div>
       </div>
 
@@ -60,12 +60,14 @@
         <div class="save-btn-container">
           <button type="button" id="saveChangesBtn" onclick="saveProfile()">Save</button>
         </div>
-
-        <div class="action-buttons">
-          <button class="btn" onclick="location.href='../sell/sell.html'">Start Selling</button>
-            <button class="btn" onclick="location.href='../Explore pg/explore.html'">Start Browsing</button>
-        </div>
       </form>
+
+      <!-- Moved action buttons OUTSIDE form -->
+      <div class="action-buttons">
+        <button type="button" class="btn" onclick="location.href='../sell/sell.html'">Start Selling</button>
+        <button type="button" class="btn" onclick="location.href='../Explore pg/explore.html'">Start Browsing</button>
+      </div>
+
     </div>
   </section>
 
@@ -77,4 +79,4 @@
   </footer>
 
 </body>
-</html>
+          </html>
