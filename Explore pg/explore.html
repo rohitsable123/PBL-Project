@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explore Books - ReRead</title>
   <link rel="stylesheet" href="explore.css" />
-  <script src="explore.js"></script>
+  <script src="explore.js" defer></script>
 </head>
 <body>
   <header>
@@ -31,27 +31,34 @@
 
     <div class="filters-section">
       <div class="filters">
-        <label>Price Range:</label>
-        <select>
-          <option>Select</option>
-          <option value="low">Below ₹200</option>
-          <option value="mid">₹200 - ₹500</option>
-          <option value="high">Above ₹500</option>
-        </select>
+        <div class="filter-block">
+          <label>Price Range:</label>
+          <select id="priceFilter">
+            <option value="">Select</option>
+            <option value="low">Below ₹200</option>
+            <option value="mid">₹200 - ₹500</option>
+            <option value="high">Above ₹500</option>
+          </select>
+        </div>
 
-        <label>Region:</label>
-        <input type="text" placeholder="Enter your region">
+        <div class="filter-block">
+          <label>Sort by:</label>
+          <select id="sortFilter">
+            <option value="">Select</option>
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
+          </select>
+        </div>
 
-        <label>Condition:</label>
-        <select>
-          <option>Select</option>
-          <option value="new">New</option>
-          <option value="used">Used</option>
-        </select>
+        <div class="filter-block">
+          <label>Search:</label>
+          <input type="text" id="searchInput" placeholder="Search by book name">
+        </div>
       </div>
     </div>
 
     <div class="book-list">
+      <!-- Books will load here -->
     </div>
   </main>
 
