@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           e.stopPropagation();
 
           const cartItem = {
+            book_id: book.id,
             book_title: book.name,
             book_price: book.user_price,
             book_image: book.image_url,
