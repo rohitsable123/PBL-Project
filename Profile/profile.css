@@ -8,7 +8,9 @@
 body {
   background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
   min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
 
 header {
   background: linear-gradient(to right, #3e3d65, #6b67a3);
@@ -28,7 +30,7 @@ nav {
   font-weight: bold;
 }
 
-.back-btn, .notif-btn {
+.back-btn {
   background: none;
   border: none;
   color: white;
@@ -37,6 +39,7 @@ nav {
 }
 
 .profile-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   padding: 40px 20px;
@@ -118,6 +121,25 @@ form input, form select {
   display: none;
 }
 
+.save-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#saveChangesBtn {
+  background-color: #6b67a3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#saveChangesBtn:hover {
+  background-color: #5a5591;
+}
+
 .action-buttons {
   display: flex;
   justify-content: space-between;
@@ -147,22 +169,4 @@ footer {
   color: white;
   margin: 0 10px;
   text-decoration: none;
-}
-.save-btn-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#saveChangesBtn {
-  background-color: #6b67a3;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#saveChangesBtn:hover {
-  background-color: #5a5591;
 }
