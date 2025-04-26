@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const bookList = document.querySelector(".book-list");
   const priceFilter = document.getElementById("priceFilter");
@@ -114,4 +116,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   sortFilter.addEventListener("change", filterBooks);
   searchInput.addEventListener("input", filterBooks);
 });
-
