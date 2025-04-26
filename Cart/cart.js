@@ -1,54 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalElement = document.getElementById("cart-total");
   const emptyMsg = document.getElementById("empty-msg");
   const summaryContainer = document.getElementById("summary-container");
-  const authBtn = document.getElementById("auth-btn");
+  const authBtn = document.getElementById("loginToggle");
 
-  let cart = [];
-
-  async function fetchCartFromServer() {
+  async function fetchCartItems() {
     try {
       const response = await fetch('https://pbl-backend-cqot.onrender.com/api/cart', {
         method: 'GET',
         credentials: 'include',
       });
-      if (response.ok) {
-        cart = await response.json();
-        renderCart();
-      } else {
-        console.error('Failed to fetch cart');
-      }
+      const cart = await response.json();
+      renderCart(cart);
     } catch (error) {
-      console.error('Error fetching cart:', error);
+      console.error("Error loading cart:", error);
     }
   }
 
-  async function saveCartItemToServer(item) {
-    try {
-      await fetch('https://pbl-backend-cqot.onrender.com/api/cart', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item),
-      });
-    } catch (error) {
-      console.error('Error saving cart item:', error);
-    }
-  }
-
-  async function removeCartItemFromServer(cartItemId) {
-    try {
-      await fetch(`https://pbl-backend-cqot.onrender.com/api/cart/${cartItemId}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-    } catch (error) {
-      console.error('Error removing cart item:', error);
-    }
-  }
-
-  function renderCart() {
+  function renderCart(cart) {
     cartItemsContainer.innerHTML = "";
     let total = 0;
 
@@ -61,17 +31,17 @@ document.addEventListener("DOMContentLoaded", function () {
     summaryContainer.style.display = "block";
     emptyMsg.style.display = "none";
 
-    cart.forEach((item, index) => {
-      const itemTotal = item.book_price * 1; // quantity = 1 fixed for now
+    cart.forEach((item) => {
+      const itemTotal = parseFloat(item.book_price);
       total += itemTotal;
 
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td><img src="${item.book_image}" alt="${item.book_title}"></td>
+        <td><img src="${item.book_image}" alt="${item.book_title}" style="height:50px;"></td>
         <td>${item.book_title}</td>
         <td>₹${item.book_price}</td>
         <td>1</td>
-        <td>₹${itemTotal.toFixed(2)}</td>
+        <td>₹${item.book_price}</td>
         <td><button class="remove-btn" onclick="removeItem(${item.id})">X</button></td>
       `;
       cartItemsContainer.appendChild(row);
@@ -80,11 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
     cartTotalElement.innerText = total.toFixed(2);
   }
 
-  window.removeItem = async function (id) {
-    await removeCartItemFromServer(id);
-    cart = cart.filter((item) => item.id !== id);
-    renderCart();
-  };
+  window.removeItem = async function (itemId) {
+    try {
+      const response = await fetch(`https://pbl-backend-cqot.onrender.com/api/cart/${itemId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        fetchCartItems(); // Reload cart after delete
+      }
+    } catch (error) {
+      console.error("Error removing item:", error);
+    }
+  }
 
   function updateAuthButton() {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -102,15 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function loadProfilePhoto() {
-    const profileImg = document.getElementById("nav-profile-img");
-    const savedImg = localStorage.getItem("profileImage");
-    if (savedImg) {
-      profileImg.src = savedImg;
-    }
-  }
-
   updateAuthButton();
-  loadProfilePhoto();
-  fetchCartFromServer();
+  fetchCartItems();
 });
