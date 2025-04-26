@@ -16,7 +16,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'reread_books', // optional folder
+    folder: 'reread_books',
     allowed_formats: ['jpg', 'jpeg', 'png'],
   },
 });
@@ -33,21 +33,22 @@ function isAuthenticated(req, res, next) {
 router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
   const userId = req.session.userId;
   const {
-  bookName,
-  bookAuthor,
-  originalPrice,
-  userPrice,
-  grade,
-} = req.body;
+    bookName,
+    bookAuthor,
+    originalPrice,
+    userPrice,
+    grade,
+    conditions // 🆕 Receiving conditions from body
+  } = req.body;
 
+  const imageUrl = req.file.path;
 
-  const imageUrl = req.file.path; 
   const sql = `
-    INSERT INTO books (user_id, name, author, original_price, user_price, grade, image_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO books (user_id, name, author, original_price, user_price, grade, conditions, image_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, imageUrl], (err) => {
+  db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, conditions, imageUrl], (err) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Failed to list book' });
@@ -57,3 +58,4 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
 });
 
 module.exports = router;
+
