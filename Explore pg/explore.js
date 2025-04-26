@@ -2,16 +2,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const bookList = document.querySelector(".book-list");
   const priceFilter = document.querySelector('select'); // First select
-  const regionFilter = document.querySelector('select[name="region"]'); // Region select
-  const conditionFilter = document.querySelector('select[name="condition"]'); // Condition select
-  const searchBar = document.getElementById("searchBar");
-  const removeFiltersBtn = document.getElementById("removeFiltersBtn");
-
+  const regionInput = document.querySelector('input[type="text"]');
+  const conditionFilter = document.querySelectorAll('select')[1]; // Second select
+  
   let allBooks = [];
 
   bookList.innerHTML = "Loading books...";
 
-  // Fetch books from backend
   try {
     const response = await fetch("https://pbl-backend-cqot.onrender.com/api/explore", {
       method: "GET",
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     bookList.innerHTML = "<p>Something went wrong while loading books.</p>";
   }
 
-  // Function to render books
   function renderBooks(books) {
     bookList.innerHTML = "";
 
@@ -55,7 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Function to filter books based on selected filters
   function filterBooks() {
     let filtered = [...allBooks];
 
@@ -69,13 +64,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtered = filtered.filter(book => book.user_price > 500);
     }
 
-    // Region Filter (Pune or Out of Pune)
-    const regionValue = regionFilter.value;
-    if (regionValue !== "Select") {
-      filtered = filtered.filter(book => book.region.toLowerCase() === regionValue.toLowerCase());
+    // Region Filter
+    const regionValue = regionInput.value.trim().toLowerCase();
+    if (regionValue !== "") {
+      filtered = filtered.filter(book => (book.region || "").toLowerCase().includes(regionValue));
     }
 
-    // Condition Filter (New or Used)
+    // Condition Filter
     const conditionValue = conditionFilter.value;
     if (conditionValue === "new") {
       filtered = filtered.filter(book => book.condition === "New");
@@ -83,30 +78,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtered = filtered.filter(book => book.condition === "Used");
     }
 
-    // Search Bar Filter (Live Search by Book Name or Author)
-    const searchValue = searchBar.value.trim().toLowerCase();
-    if (searchValue) {
-      filtered = filtered.filter(book => 
-        book.name.toLowerCase().includes(searchValue) || 
-        book.author.toLowerCase().includes(searchValue)
-      );
-    }
-
     renderBooks(filtered);
   }
 
-  // Event listeners for filters and search bar
+  // Event listeners
   priceFilter.addEventListener("change", filterBooks);
-  regionFilter.addEventListener("change", filterBooks);
+  regionInput.addEventListener("input", filterBooks);
   conditionFilter.addEventListener("change", filterBooks);
-  searchBar.addEventListener("input", filterBooks);
-
-  // Remove Filters button - reset all filters
-  removeFiltersBtn.addEventListener("click", () => {
-    priceFilter.value = "Select";
-    regionFilter.value = "Select";
-    conditionFilter.value = "Select";
-    searchBar.value = "";
-    renderBooks(allBooks);
-  });
 });
