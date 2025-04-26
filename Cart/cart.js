@@ -5,7 +5,48 @@ document.addEventListener("DOMContentLoaded", function () {
   const summaryContainer = document.getElementById("summary-container");
   const authBtn = document.getElementById("auth-btn");
 
-  let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  let cart = [];
+
+  async function fetchCartFromServer() {
+    try {
+      const response = await fetch('https://pbl-backend-cqot.onrender.com/api/cart', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        cart = await response.json();
+        renderCart();
+      } else {
+        console.error('Failed to fetch cart');
+      }
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  }
+
+  async function saveCartItemToServer(item) {
+    try {
+      await fetch('https://pbl-backend-cqot.onrender.com/api/cart', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(item),
+      });
+    } catch (error) {
+      console.error('Error saving cart item:', error);
+    }
+  }
+
+  async function removeCartItemFromServer(cartItemId) {
+    try {
+      await fetch(`https://pbl-backend-cqot.onrender.com/api/cart/${cartItemId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+    } catch (error) {
+      console.error('Error removing cart item:', error);
+    }
+  }
 
   function renderCart() {
     cartItemsContainer.innerHTML = "";
@@ -21,38 +62,27 @@ document.addEventListener("DOMContentLoaded", function () {
     emptyMsg.style.display = "none";
 
     cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
+      const itemTotal = item.book_price * 1; // quantity = 1 fixed for now
       total += itemTotal;
 
       const row = document.createElement("tr");
-      row.innerHTML = 
-        <td><img src="${item.image}" alt="${item.title}"></td>
-        <td>${item.title}</td>
-        <td>₹${item.price}</td>
-        <td>
-          <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
-          <input type="text" class="quantity" value="${item.quantity}" readonly>
-          <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
-        </td>
+      row.innerHTML = `
+        <td><img src="${item.book_image}" alt="${item.book_title}"></td>
+        <td>${item.book_title}</td>
+        <td>₹${item.book_price}</td>
+        <td>1</td>
         <td>₹${itemTotal.toFixed(2)}</td>
-        <td><button class="remove-btn" onclick="removeItem(${index})">X</button></td>
-      ;
+        <td><button class="remove-btn" onclick="removeItem(${item.id})">X</button></td>
+      `;
       cartItemsContainer.appendChild(row);
     });
 
     cartTotalElement.innerText = total.toFixed(2);
-    localStorage.setItem("cartItems", JSON.stringify(cart));
   }
 
-  window.updateQuantity = function (index, change) {
-    if (cart[index].quantity + change > 0) {
-      cart[index].quantity += change;
-      renderCart();
-    }
-  };
-
-  window.removeItem = function (index) {
-    cart.splice(index, 1);
+  window.removeItem = async function (id) {
+    await removeCartItemFromServer(id);
+    cart = cart.filter((item) => item.id !== id);
     renderCart();
   };
 
@@ -82,5 +112,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateAuthButton();
   loadProfilePhoto();
-  renderCart();
+  fetchCartFromServer();
 });
