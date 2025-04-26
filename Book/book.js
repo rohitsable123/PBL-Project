@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const book = await res.json();
 
     const conditionsDropdown = book.conditions
-      ? `<label for="conditions"><strong>Seller Conditions:</strong></label>
+      ? `<label for="conditions"><strong>Book Conditions:</strong></label>
          <select id="conditions">
            ${book.conditions.split(',').map(c => `<option>${c.trim()}</option>`).join('')}
          </select>`
