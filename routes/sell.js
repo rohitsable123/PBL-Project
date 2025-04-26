@@ -44,7 +44,7 @@ router.post('/', isAuthenticated, upload.single('bookImage'), (req, res) => {
   const imageUrl = req.file.path; 
   const sql = `
     INSERT INTO books (user_id, name, author, original_price, user_price, grade, image_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?,)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(sql, [userId, bookName, bookAuthor, originalPrice, userPrice, grade, imageUrl], (err) => {
