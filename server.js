@@ -40,11 +40,14 @@ app.use(session({
 // Mount routes
 const sellRoutes = require('./routes/sell');
 const exploreRoute = require('./routes/explore');
+const profileRoutes = require('./routes/profile');
+
 
 app.use('/auth', authRoutes);
 app.use('/api/sell', sellRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/explore', exploreRoute);
+app.use('/profile', profileRoutes);
 
 // Root route for test
 app.get('/', (req, res) => {
