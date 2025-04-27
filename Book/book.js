@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p><strong>Seller:</strong> ${book.owner_name}</p>
       ${conditionsDropdownHTML}
       <br><br>
-      <a href="#" id="whatsapp-link">
+      <a href="https://wa.me/${book.owner_phone}" target="_blank" id="whatsapp-link">
         <button class="whatsapp-button">Contact via WhatsApp</button>
       </a>
     `;
