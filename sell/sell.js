@@ -150,7 +150,7 @@ document.getElementById("sellingForm").addEventListener("submit", async function
 
     if (response.ok) {
       alert("✅ Book listed successfully!");
-      window.location.href = "../Explore/explore.html"; // Redirect after success
+      window.location.href = "../Explore pg/explore.html"; // Redirect after success
     } else {
       alert("❌ Failed to list book: " + (data.error || "Unknown error"));
     }
