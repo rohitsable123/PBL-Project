@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         e.preventDefault(); // Stop normal link behavior
 
         try {
-          const sessionRes = await fetch('https://pbl-backend-cqot.onrender.com/api/session', {
+          const sessionRes = await fetch('https://pbl-backend-cqot.onrender.com/auth/user'', {
             credentials: 'include'
           });
           const sessionData = await sessionRes.json();
