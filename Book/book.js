@@ -54,7 +54,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log("Session data:", sessionData); // DEBUGGING
 
           if (sessionData.user) { 
-            window.open(`https://wa.me/${book.owner_phone}`, "_blank");
+            const message = `Hi, I'm interested in your book "${book.name}"`;
+            window.open(`https://wa.me/${book.owner_phone}?text=${encodeURIComponent(message)}`, "_blank");
           } else {
             alert("Please login first to contact the seller.");
             window.location.href = "../login/login.html";
