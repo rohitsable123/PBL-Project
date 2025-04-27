@@ -8,12 +8,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch(`https://pbl-backend-cqot.onrender.com/api/explore/${bookId}`);
     const book = await res.json();
 
-    const conditionsDropdown = book.conditions
-      ? `<label for="conditions"><strong>Book Conditions:</strong></label>
-         <select id="conditions">
-           ${book.conditions.split(',').map(c => `<option>${c.trim()}</option>`).join('')}
-         </select>`
-      : "<p><strong>Book Conditions:</strong> Not provided</p>";
+    let conditionsDropdownHTML = "";
+
+    if (book.conditions && book.conditions.trim() !== "") {
+      const conditionsArray = book.conditions.split(';'); // Split by semicolon
+
+      conditionsDropdownHTML = `
+        <label for="conditions"><strong>Book Conditions:</strong></label>
+        <select id="conditions">
+          ${conditionsArray.map(condition => `<option>${condition.trim()}</option>`).join('')}
+        </select>
+      `;
+    } else {
+      conditionsDropdownHTML = "<p><strong>Book Conditions:</strong> Not provided</p>";
+    }
 
     container.innerHTML = `
       <img src="${book.image_url}" alt="Book Image" class="book-image">
@@ -23,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p><strong>Your Price:</strong> ₹${book.user_price}</p>
       <p><strong>Grade:</strong> ${book.grade || "Not provided"}</p>
       <p><strong>Seller:</strong> ${book.owner_name}</p>
-      ${conditionsDropdown}
+      ${conditionsDropdownHTML}
       <br><br>
       <a href="https://wa.me/${book.owner_phone}" target="_blank">
         <button class="whatsapp-button">Contact via WhatsApp</button>
