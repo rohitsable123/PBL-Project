@@ -1,23 +1,27 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const profilePic = document.getElementById("navProfileImage"); // corrected id
+  const profilePic = document.getElementById("navProfileImage"); 
   const savedImage = localStorage.getItem("profileImage");
 
   if (savedImage) {
     profilePic.src = savedImage;
   } else {
-    profilePic.src = "../profile-icon.png"; // Corrected relative path
+    profilePic.src = "../profile-icon.png"; 
   }
 
   const searchBtn = document.getElementById("searchBtn");
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults");
 
-  searchBtn.addEventListener("click", async () => {
+  // Function to fetch and filter books
+  async function performSearch() {
     const query = searchInput.value.trim().toLowerCase();
-    if (!query) return; // do nothing if search empty
+    if (!query) {
+      searchResults.innerHTML = "";
+      return;
+    }
 
     try {
-      const res = await fetch("https://pbl-backend-cqot.onrender.com/api/explore"); // fetch all books
+      const res = await fetch("https://pbl-backend-cqot.onrender.com/api/explore"); 
       const books = await res.json();
 
       const filteredBooks = books.filter(book =>
@@ -25,7 +29,6 @@ window.addEventListener("DOMContentLoaded", () => {
         book.author.toLowerCase().includes(query)
       );
 
-      // Clear previous results
       searchResults.innerHTML = "";
 
       if (filteredBooks.length === 0) {
@@ -33,7 +36,6 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Show the matching books
       filteredBooks.forEach(book => {
         const bookCard = document.createElement("div");
         bookCard.className = "book-card";
@@ -49,6 +51,24 @@ window.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Search failed:", err);
       searchResults.innerHTML = "<p>Error fetching books.</p>";
+    }
+  }
+
+  // When user types in the input box
+  searchInput.addEventListener("input", () => {
+    performSearch();
+  });
+
+  // When user clicks search button
+  searchBtn.addEventListener("click", () => {
+    performSearch();
+  });
+
+  // When user presses "Enter" inside input
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performSearch();
     }
   });
 });
