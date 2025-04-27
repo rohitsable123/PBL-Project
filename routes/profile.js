@@ -45,7 +45,6 @@ router.post('/update', upload.single('profileImage'), async (req, res) => {
         }
         profileImageUrl = result.secure_url;
 
-        // After image upload success, update database
         db.query('UPDATE users SET fullname = ?, email = ?, phone = ?, age = ?, region = ?, gender = ?, profileImage = ? WHERE id = ?', 
           [fullname, email, phone, age, region, gender, profileImageUrl, req.session.userId],
           (err) => {
@@ -61,7 +60,6 @@ router.post('/update', upload.single('profileImage'), async (req, res) => {
       res.status(500).json({ message: 'Server error during upload' });
     }
   } else {
-    // No new image, only update other fields
     db.query('UPDATE users SET fullname = ?, email = ?, phone = ?, age = ?, region = ?, gender = ? WHERE id = ?', 
       [fullname, email, phone, age, region, gender, req.session.userId],
       (err) => {
@@ -70,6 +68,21 @@ router.post('/update', upload.single('profileImage'), async (req, res) => {
       }
     );
   }
+});
+
+// Route: Remove Profile Image
+router.post('/removeImage', (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  db.query('UPDATE users SET profileImage = NULL WHERE id = ?', [req.session.userId], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Failed to remove profile image' });
+    }
+    res.json({ message: 'Profile image removed successfully' });
+  });
 });
 
 module.exports = router;
