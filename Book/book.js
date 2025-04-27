@@ -33,10 +33,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p><strong>Seller:</strong> ${book.owner_name}</p>
       ${conditionsDropdownHTML}
       <br><br>
-      <a href="https://wa.me/${book.owner_phone}" target="_blank">
+      <a href="#" id="whatsapp-link">
         <button class="whatsapp-button">Contact via WhatsApp</button>
       </a>
     `;
+
+    // Add WhatsApp button login check
+    const whatsappButton = document.querySelector(".whatsapp-button");
+
+    if (whatsappButton) {
+      whatsappButton.addEventListener("click", async (e) => {
+        e.preventDefault(); // Stop normal link behavior
+
+        try {
+          const sessionRes = await fetch('https://pbl-backend-cqot.onrender.com/api/session', {
+            credentials: 'include'
+          });
+          const sessionData = await sessionRes.json();
+
+          if (sessionData.loggedIn) {
+            // User is logged in, open WhatsApp link
+            window.open(`https://wa.me/${book.owner_phone}`, "_blank");
+          } else {
+            alert("Please login first to contact the seller.");
+            window.location.href = "../login/login.html"; // Adjust path if needed
+          }
+        } catch (err) {
+          console.error("Session check failed:", err);
+          alert("Something went wrong. Please login again.");
+          window.location.href = "../login/login.html"; // Fallback to login
+        }
+      });
+    }
+
   } catch (err) {
     console.error("Book fetch failed:", err);
     container.innerHTML = "<p>Error loading book details.</p>";
