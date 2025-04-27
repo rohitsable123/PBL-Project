@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("book-details");
 
   try {
-    const res = await fetch(`https://pbl-backend-cqot.onrender.com/api/explore/${bookId}`);
+    const res = await fetch(`https://pbl-backend-cqot.onrender.com/api/explore/${bookId}`, {
+      credentials: 'include' // important to maintain session/cookies
+    });
     const book = await res.json();
 
     let conditionsDropdownHTML = "";
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p><strong>Seller:</strong> ${book.owner_name}</p>
       ${conditionsDropdownHTML}
       <br><br>
-      <a href="https://wa.me/${book.owner_phone}" target="_blank" id="whatsapp-link">
+      <a href="#" id="whatsapp-link">
         <button class="whatsapp-button">Contact via WhatsApp</button>
       </a>
     `;
@@ -51,6 +53,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
           const sessionData = await sessionRes.json();
 
+          console.log("Session data:", sessionData); // DEBUGGING line
+
           if (sessionData.loggedIn) {
             // User is logged in, open WhatsApp link
             window.open(`https://wa.me/${book.owner_phone}`, "_blank");
@@ -60,8 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         } catch (err) {
           console.error("Session check failed:", err);
-          alert("Something went wrong. Please login again.");
-          window.location.href = "../login/login.html"; // Fallback to login
+          alert("Unable to verify login. Please refresh and try again.");
         }
       });
     }
