@@ -7,10 +7,29 @@ function toggleDropdown() {
   additionalFields.classList.toggle("hidden");
 }
 
-function removeProfile() {
-  const profileImage = document.getElementById("profileImage");
-  profileImage.src = "../Dashboard/profile-icon.png";
-  localStorage.removeItem("profileImage");
+async function removeProfile() {
+  try {
+    const res = await fetch("https://pbl-backend-cqot.onrender.com/profile/removeImage", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!res.ok) throw new Error("Failed to remove profile image");
+
+    const data = await res.json();
+
+    if (res.ok) {
+      const profileImage = document.getElementById("profileImage");
+      profileImage.src = "../Dashboard/profile-icon.png";
+      localStorage.removeItem("profileImage");
+      alert("Profile image removed successfully!");
+    } else {
+      alert(data.message || "Failed to remove image");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong while removing the image!");
+  }
 }
 
 async function fetchProfile() {
@@ -33,6 +52,9 @@ async function fetchProfile() {
     if (data.profileImage) {
       document.getElementById("profileImage").src = data.profileImage;
       localStorage.setItem("profileImage", data.profileImage);
+      document.getElementById("removeBtn").style.display = "inline-block";
+    } else {
+      document.getElementById("removeBtn").style.display = "none";
     }
   } catch (err) {
     console.error(err);
@@ -85,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadInput = document.getElementById("uploadInput");
   const profileImage = document.getElementById("profileImage");
 
-  // Load image from localStorage if exists
   const savedImage = localStorage.getItem("profileImage");
   if (savedImage) {
     profileImage.src = savedImage;
