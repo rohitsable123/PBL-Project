@@ -6,15 +6,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const res = await fetch(`https://pbl-backend-cqot.onrender.com/api/explore/${bookId}`, {
-      credentials: 'include' // important to maintain session/cookies
+      credentials: 'include'
     });
     const book = await res.json();
 
     let conditionsDropdownHTML = "";
 
     if (book.conditions && book.conditions.trim() !== "") {
-      const conditionsArray = book.conditions.split(';'); // Split by semicolon
-
+      const conditionsArray = book.conditions.split(';');
       conditionsDropdownHTML = `
         <label for="conditions"><strong>Book Conditions:</strong></label>
         <select id="conditions">
@@ -40,12 +39,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       </a>
     `;
 
-    // Add WhatsApp button login check
     const whatsappButton = document.querySelector(".whatsapp-button");
 
     if (whatsappButton) {
       whatsappButton.addEventListener("click", async (e) => {
-        e.preventDefault(); // Stop normal link behavior
+        e.preventDefault();
 
         try {
           const sessionRes = await fetch('https://pbl-backend-cqot.onrender.com/auth/user', {
@@ -53,14 +51,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
           const sessionData = await sessionRes.json();
 
-          console.log("Session data:", sessionData); // DEBUGGING line
+          console.log("Session data:", sessionData); // DEBUGGING
 
-          if (sessionData.loggedIn) {
-            // User is logged in, open WhatsApp link
+          if (sessionData.user) { 
             window.open(`https://wa.me/${book.owner_phone}`, "_blank");
           } else {
             alert("Please login first to contact the seller.");
-            window.location.href = "../login/login.html"; // Adjust path if needed
+            window.location.href = "../login/login.html";
           }
         } catch (err) {
           console.error("Session check failed:", err);
