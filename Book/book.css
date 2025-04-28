@@ -15,6 +15,27 @@ body {
   color: #222;
 }
 
+/* Back Button */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #3c3c7b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background-color: #2a2a5a;
+}
+
 /* Main Container */
 .book-details-container {
   flex: 1;
@@ -133,4 +154,5 @@ select {
   #book-details {
     padding: 25px 15px;
   }
-  }
+}
+
