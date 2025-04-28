@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p><strong>Author:</strong> ${book.author}</p>
       <p><strong>Original Price:</strong> ₹${book.original_price}</p>
       <p><strong>Your Price:</strong> ₹${book.user_price}</p>
+       <p><strong>Grade:</strong> ${book.grade || "Not provided"}</p>
       <p><strong>Seller:</strong> ${book.owner_name}</p>
       ${conditionsDropdownHTML}
       <br><br>
