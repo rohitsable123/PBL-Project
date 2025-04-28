@@ -72,3 +72,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = "<p>Error loading book details.</p>";
   }
 });
+
+// Back button function
+function goBack() {
+  window.history.back();
+}
+
